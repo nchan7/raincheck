@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
         maxlength: [99, 'Password must be between 5 and 99 characters']
     },
 
-    trip: [{type: mongoose.Schema.Types.ObjectId, ref: 'Trip'}]
+    trips: [{type: mongoose.Schema.Types.ObjectId, ref: 'Trip'}]
     
 });
 
@@ -31,7 +31,8 @@ userSchema.set('toObject', {
         let returnJson = {
             _id: ret._id, 
             email: ret.email,
-            name: ret.name
+            name: ret.name,
+            trips: ret.trips
         }
         return returnJson
     }
