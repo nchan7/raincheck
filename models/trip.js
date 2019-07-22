@@ -1,14 +1,13 @@
 const mongoose = require('mongoose')
 
 const tripSchema = new mongoose.Schema({
-    zipDest: Number,
+    name: String,
     zipStart: Number,
-    latStart: Number,
-    longStart: Number,
-    time: Date,
-    latDest: Number,
-    longDest: Number
-
+    zipDest: Number,
+    startTime: Number,
+    travelTime: Number,
+    returnTime: Number,
+    returnTravelTime: Number
 })
 
 
