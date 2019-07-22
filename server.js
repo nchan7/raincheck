@@ -11,6 +11,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json()); //? Just a configuration for the body parser. Both will result in information in req.body
 app.use(helmet());
 
+
+
 const loginLimiter = new RateLimit({
     windowMs: 5*60*1000,
     max: 3,
@@ -24,7 +26,7 @@ const signupLimiter = new RateLimit({
     message: 'Maximum accounts created. Please try again later.'
 })
 
-mongoose.connect('mongodb://localhost/jwtAuth', {useNewUrlParser: true});
+mongoose.connect(`mongodb://localhost/${process.env.MONGO_DB}`, {useNewUrlParser: true});
 const db = mongoose.connection; 
 db.once('open', () => {
     console.log(`Connected to Mongo on ${db.host}:${db.port}`);
@@ -38,6 +40,7 @@ db.on('error', (err) => {
 
 app.use('/auth', require('./routes/auth'));
 app.use('/api', expressJWT({secret: process.env.JWT_SECRET}), require('./routes/api'));
+app.use('/trips', expressJWT({secret: process.env.JWT_SECRET}), require('./routes/trips'));
 //* Can include .unless to lock everything except certain verb: ".unless({method: 'POST'})"
 
 app.listen(process.env.PORT, () => {

@@ -5,7 +5,7 @@ const tripSchema = new mongoose.Schema({
     zipStart: Number,
     latStart: Number,
     longStart: Number,
-    time: Date,
+    time: Number,
     latDest: Number,
     longDest: Number
 
