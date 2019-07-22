@@ -123,6 +123,7 @@ class App extends React.Component {
     }
     var trip = this.state.trip
     return (
+      <Header />
       <Router>
         {contents}
         <Route exact path ='/' component={Home} d/>
@@ -143,6 +144,7 @@ class App extends React.Component {
                      render={(props) => <IssueShow issues={issueCopy} {...props} />} />   */}
 
       </Router>  
+      <Footer />
         
     );
   }
