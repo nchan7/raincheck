@@ -2,6 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import Login from './Login';
 import Signup from './Signup';
+import {
+  BrowserRouter as Router,
+  Route ,
+  Link
+} from 'react-router-dom'
 
 
 class App extends React.Component {
@@ -15,7 +20,8 @@ class App extends React.Component {
     }
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
     this.liftToken = this.liftToken.bind(this) 
-    this.logout = this.logout.bind(this) 
+    this.logout = this.logout.bind(this)
+    this.testRoute = this.testRoute.bind(this)
   }
 
   checkForLocalToken() {
@@ -79,15 +85,31 @@ class App extends React.Component {
     this.checkForLocalToken()
   }
 
+  testRoute(e) {
+    e.preventDefault();
+    let config = {
+      headers: {
+        Authorization: `Bearer ${this.state.token}`
+      }
+    }
+    axios.get('/api', config).then(res => {
+      console.log("accessed the protected route");
+      this.setState({
+        apiData: res.data.message
+      })
+    })
+  }
+
   render() {
     var user = this.state.user
-    console.log(user);
     var contents 
     if (user) {
       contents = (
         <>
           <p>Hello, {user.name}</p>
           <p onClick={this.logout}>Logout!</p>
+          <p onClick={this.testRoute}>Access protected route</p>
+          <p>{this.state.apiData}</p>
         </>
       );
     } else {
