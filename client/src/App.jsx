@@ -85,6 +85,7 @@ class App extends React.Component {
     this.checkForLocalToken()
   }
 
+  // The testRoute function was used to toubleshoot the api information
   testRoute(e) {
     e.preventDefault();
     let config = {
@@ -123,6 +124,7 @@ class App extends React.Component {
     }
     var trip = this.state.trip
     return (
+      <>
       <Header />
       <Router>
         {contents}
@@ -145,7 +147,7 @@ class App extends React.Component {
 
       </Router>  
       <Footer />
-        
+      </>
     );
   }
 }
