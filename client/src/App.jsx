@@ -85,6 +85,7 @@ class App extends React.Component {
     this.checkForLocalToken()
   }
 
+  // The testRoute function was used to toubleshoot the api information
   testRoute(e) {
     e.preventDefault();
     let config = {
@@ -121,8 +122,32 @@ class App extends React.Component {
         </>
       );
     }
+    var trip = this.state.trip
     return (
-        contents
+      <>
+      <Header />
+      <Router>
+        {contents}
+        <Route exact path ='/' component={Home} d/>
+        <Route exact path ='/profile' render={(props) => <Profile user={user} />} /> 
+        
+        <Route exact path ='/trips' render={(props) => <TripContainer trip={trip} />} /> 
+        <Route exact path ='/trips/new'  /> 
+        <Route exact path ='/trips/:id' /> 
+        <Route exact path ='/trips/:id/edit'  /> 
+
+        
+
+
+        {/* <Route exact path='/' component={Splash} />
+        <Route exact path='/issues' 
+                      render={(props) => <Issues issues={issueCopy} />}/> 
+        <Route exact path='/issues/:id'
+                     render={(props) => <IssueShow issues={issueCopy} {...props} />} />   */}
+
+      </Router>  
+      <Footer />
+      </>
     );
   }
 }
