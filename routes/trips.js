@@ -3,67 +3,85 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const Trips = require('../models/trip')
-// const User = require('../models/user')
+const User = require('../models/user')
 
 router.use(express.urlencoded({extended: false}));
 
-router.get('/userinfo', (req,res) => {
-    res.json({thing: req.data, thong: 'hello'})
-})
-
+// GET ALL trips for a user
 router.get('/', (req, res) => {
-    res.json({type: 'success', message: 'You accessed the protected GET ALL TRIPS route'})
-    // res.json({trips})
-});
-
-router.get('/:id', (req, res) => {
-    res.json({type: 'success', message: 'You accessed the protected GET SINGLE TRIP BY ID route'})
-});
-
-router.post('/', (req, res) => {
-        // console.log(req.body.user)
-        Trips.create({
-            zipDest: req.body.zipDest,
-            zipStart: req.body.zipStart,
-            latStart: req.body.latStart,
-            longStart: req.body.longStart,
-            travelTime: req.body.travelTime,
-            latDest: req.body.latDest,
-            longDest: req.body.longDest
-        },
-        function(err, trips) {
-            if (err) res.json(err)
-            res.json({type: 'success', message: 'You accessed the protected POST new TRIPS route'})
-        })
-});
-
-router.put('/:id', (req, res) => {
-    // Find the user req.body.user 
-    
-    Trips.findByIdAndUpdate(req.params.id, 
-        {
-            zipDest: req.body.zipDest,
-            zipStart: req.body.zipStart,
-            latStart: req.body.latStart,
-            longStart: req.body.longStart,
-            travelTime: req.body.travelTime,
-            latDest: req.body.latDest,
-            longDest: req.body.longDest
-        }, 
-        function(err, trips) {
+    User.findById(req.user._id).populate('trips').exec( (err,user) => {
+        console.log(user)
         if (err) res.json(err)
-        res.json({type: 'success', message: 'You accessed the protected PUT edit TRIPS route'})
+        res.json(user.trips)
     })
+});
+
+// GET ONE trip for a user
+router.get('/:id', (req, res) => {
+    Trips.findById(req.params.id).then( (err,trip) => {
+        if (err) res.json(err)
+        res.json(trip)
+    })
+});
+
+// POST trip for a user
+router.post('/', (req, res) => {
+    User.findById(req.user, function(err, user){
+        Trips.create({
+            tripName: req.body.tripName,
+            zipStart: req.body.zipStart,
+            latStart: req.body.latStart,
+            longStart: req.body.longStart,
+            startTime: req.body.startTime,
+            travelTime: req.body.travelTime,
+            zipDest: req.body.zipDest,
+            latDest: req.body.latDest,
+            longDest: req.body.longDest,
+            returnTime: req.body.returnTime,
+            returnTravelTime: req.body.returnTravelTime
+        },
+        function(err, trip) {
+            user.trips.push(trip)
+            user.save(function(err, user) {
+                if (err) res.json(err)
+                res.json({user})
+            })
+        })
+    })
+});
+
+// UPDATE trip for a user
+router.put('/:id', (req, res) => {
+        Trips.findByIdAndUpdate(req.params.id, 
+            {
+                tripName: req.body.tripName,
+                zipStart: req.body.zipStart,
+                latStart: req.body.latStart,
+                longStart: req.body.longStart,
+                startTime: req.body.startTime,
+                travelTime: req.body.travelTime,
+                zipDest: req.body.zipDest,
+                latDest: req.body.latDest,
+                longDest: req.body.longDest,
+                returnTime: req.body.returnTime,
+                returnTravelTime: req.body.returnTravelTime
+            },{new: true}, 
+            function(err, trip) {
+                    if (err) res.json(err)
+                    res.json({trip})
+            })
 })
 
+// DELETE trip for a user
 router.delete('/:id', (req, res) => {
-    findById()
-    Trips.findOneAndRemove({
-        _id: req.params.id
-    },
-    function(err) {
-        if (err) res.json(err);
-        res.json({type: 'success', message: 'You deleted one trip'})
+    User.findById(req.user, function(err, user) {
+        Trips.findOneAndRemove({
+            _id: req.params.id
+        },
+        function(err) {
+            if (err) res.json(err);
+            res.json({type: 'success', message: 'You deleted one trip'})
+        })
     })
 })
 
