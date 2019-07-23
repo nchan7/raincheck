@@ -17,7 +17,6 @@ import Header from './Header'
 import Footer from './Footer'
 
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,17 +25,17 @@ class App extends React.Component {
       user: null,
       errorMessage: '',
       trip: {
-        tripName: '',
+        tripName: 'Work',
         zipStart: '',
         latStart: '',
         longStart: '',
-        startTime: '',
-        travelTime: '',
+        startTime: '8:00am',
+        travelTime: '30min',
         zipDest: '',
         latDest: '',
         longDest: '',
-        returnTime: '',
-        returnTravelTime: ''
+        returnTime: '12:00 pm',
+        returnTravelTime: '25 min'
       }
     }
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
@@ -153,12 +152,12 @@ class App extends React.Component {
     var trip = this.state.trip
     return (
       <>
-        {contents}
+      {/* {contents} */}
         <Header />
         <Router>
           {/* <Route
             exact
-            path="/trips/new"
+            path="/"
             render={() => <Home user={this.state.user} />}
           /> */}
 
@@ -202,14 +201,14 @@ class App extends React.Component {
             exact
             path="/trips/new"
             render={() => (
-              <NewTrip trips={this.state.trip} zip={this.state.zip} />
+              <NewTrip trip={this.state.trip} />
             )}
           /> */}
 
           <Route
             exact
             path="/trips/:id/edit"
-            render={() => <EditTrip trips={this.state.trip} />}
+            render={() => <EditTrip trip={this.state.trip} />}
           />
         </Router>
 
