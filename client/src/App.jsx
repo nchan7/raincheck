@@ -2,9 +2,14 @@ import React from 'react';
 import axios from 'axios';
 import Login from './Login';
 import Signup from './Signup';
+import Home from "./components/TripContainer";
+import Raincheck from "./components/Raincheck";
+import MyTrips from "./components/MyTrip";
+import NewTrip from "./components/NewTrip";
+import EditTrip from "./components/EditTrip";
 import {
   BrowserRouter as Router,
-  Route ,
+  Route,
   Link
 } from 'react-router-dom';
 // added imports for header and footer -AdamG
@@ -20,7 +25,6 @@ class App extends React.Component {
       token: '',
       user: null,
       errorMessage: '',
-      apiData: null,
       trip: {
         tripName: '',
         zipStart: '',
@@ -34,10 +38,9 @@ class App extends React.Component {
         returnTime: '',
         returnTravelTime: ''
       }
-
     }
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
-    this.liftToken = this.liftToken.bind(this) 
+    this.liftToken = this.liftToken.bind(this)
     this.logout = this.logout.bind(this)
     this.testRoute = this.testRoute.bind(this)
   }
@@ -53,12 +56,12 @@ class App extends React.Component {
       })
     } else {
       // found a token in localStorage; verify it
-      axios.post('/auth/me/from/token', {token})
+      axios.post('/auth/me/from/token', { token })
         .then(res => {
-          if(res.data.type === 'error') {
+          if (res.data.type === 'error') {
             localStorage.removeItem('mernToken');
             this.setState({
-              token: '', 
+              token: '',
               user: null,
               errorMessage: res.data.message
             })
@@ -82,7 +85,7 @@ class App extends React.Component {
   // }
 
   //* Object Destructuring! 
-  liftToken({token, user}) {
+  liftToken({ token, user }) {
     this.setState({
       token,
       user
@@ -98,6 +101,12 @@ class App extends React.Component {
       user: null
     })
   }
+
+
+
+
+
+
 
   componentDidMount() {
     this.checkForLocalToken()
@@ -122,7 +131,7 @@ class App extends React.Component {
 
   render() {
     var user = this.state.user
-    var contents 
+    var contents
     if (user) {
       contents = (
         <>
@@ -144,10 +153,29 @@ class App extends React.Component {
     var trip = this.state.trip
     return (
       <>
-      <Header />
-      <Router>
         {contents}
+        <Header />
+        <Router>
+          <Route
+            exact
+            path="/trips/new"
+            render={() => <Home user={this.state.user} />}
+          />
 
+
+          {/* Show the weather for a single trip f*/}
+          <Route
+            exact
+            path="/raincheck"
+            render={() => <Raincheck trip={this.state.trip}/>}
+          />
+
+          {/* Show all trips for one user  {user.trips} */}
+          <Route
+            exact
+            path="/mytrip"
+            render={() => <MyTrips trip={this.state.trip} />}
+          />
         {/* Had to comment out a few lines to prevent compile problems. -AdamG */}
         {/* <Route exact path ='/' component={Home} d/> */}
         {/* <Route exact path ='/profile' render={(props) => <Profile user={user} />} />  */}
@@ -161,14 +189,31 @@ class App extends React.Component {
         
 
 
-        {/* <Route exact path='/' component={Splash} />
-        <Route exact path='/issues' 
-                      render={(props) => <Issues issues={issueCopy} />}/> 
-        <Route exact path='/issues/:id'
-                     render={(props) => <IssueShow issues={issueCopy} {...props} />} />   */}
+          {/* We will pass the geocode function inside new trip so user can input zipcode 
+            startLat
+            startLong:
+            destLat: 
+            destLong:
+            startTime: 
+            travelTime:
+            returnTime: 
+            returnTravelTime */}
+          <Route
+            exact
+            path="/trips/new"
+            render={() => (
+              <NewTrip trips={this.state.trip} zip={this.state.zip} />
+            )}
+          />
 
-      </Router>  
-      <Footer />
+          <Route
+            exact
+            path="/trips/:id/edit"
+            render={() => <EditTrip trips={this.state.trip} />}
+          />
+        </Router>
+
+        <Footer />
       </>
     );
   }
