@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MyTrip = props => {
+const MyTrips = props => {
     return (
         <>
         {/* // Returns a list of trips 
@@ -12,4 +12,4 @@ const MyTrip = props => {
     )
 }
 
-export default MyTrip;
+export default MyTrips;
