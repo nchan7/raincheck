@@ -25,17 +25,17 @@ class App extends React.Component {
       user: null,
       errorMessage: '',
       trip: {
-        tripName: 'Work',
+        tripName: '',
         zipStart: '',
         latStart: '',
         longStart: '',
-        startTime: '8:00am',
-        travelTime: '30min',
+        startTime: '',
+        travelTime: '',
         zipDest: '',
         latDest: '',
         longDest: '',
-        returnTime: '12:00 pm',
-        returnTravelTime: '25 min'
+        returnTime: '',
+        returnTravelTime: ''
       }
     }
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
@@ -152,7 +152,7 @@ class App extends React.Component {
     var trip = this.state.trip
     return (
       <>
-      {/* {contents} */}
+      {contents}
         <Header />
         <Router>
           {/* <Route
