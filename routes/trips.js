@@ -3,9 +3,13 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const Trips = require('../models/trip')
-const User = require('../models/user')
+// const User = require('../models/user')
 
 router.use(express.urlencoded({extended: false}));
+
+router.get('/userinfo', (req,res) => {
+    res.json({thing: req.data, thong: 'hello'})
+})
 
 router.get('/', (req, res) => {
     res.json({type: 'success', message: 'You accessed the protected GET ALL TRIPS route'})
@@ -17,23 +21,25 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    // find the user logged in ... save the user
-    Trips.create({
-        zipDest: req.body.zipDest,
-        zipStart: req.body.zipStart,
-        latStart: req.body.latStart,
-        longStart: req.body.longStart,
-        travelTime: req.body.travelTime,
-        latDest: req.body.latDest,
-        longDest: req.body.longDest
-    },
-    function(err, trips) {
-        if (err) res.json(err)
-        res.json({type: 'success', message: 'You accessed the protected POST new TRIPS route'})
-    })
+        // console.log(req.body.user)
+        Trips.create({
+            zipDest: req.body.zipDest,
+            zipStart: req.body.zipStart,
+            latStart: req.body.latStart,
+            longStart: req.body.longStart,
+            travelTime: req.body.travelTime,
+            latDest: req.body.latDest,
+            longDest: req.body.longDest
+        },
+        function(err, trips) {
+            if (err) res.json(err)
+            res.json({type: 'success', message: 'You accessed the protected POST new TRIPS route'})
+        })
 });
 
 router.put('/:id', (req, res) => {
+    // Find the user req.body.user 
+    
     Trips.findByIdAndUpdate(req.params.id, 
         {
             zipDest: req.body.zipDest,
@@ -51,6 +57,7 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
+    findById()
     Trips.findOneAndRemove({
         _id: req.params.id
     },

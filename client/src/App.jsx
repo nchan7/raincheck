@@ -6,8 +6,10 @@ import {
   BrowserRouter as Router,
   Route ,
   Link
-} from 'react-router-dom'
-
+} from 'react-router-dom';
+// added imports for header and footer -AdamG
+import Header from './Header'
+import Footer from './Footer'
 
 class App extends React.Component {
   constructor(props) {
@@ -138,10 +140,12 @@ class App extends React.Component {
       <Header />
       <Router>
         {contents}
-        <Route exact path ='/' component={Home} d/>
-        <Route exact path ='/profile' render={(props) => <Profile user={user} />} /> 
+
+        {/* Had to comment out a few lines to prevent compile problems. -AdamG */}
+        {/* <Route exact path ='/' component={Home} d/> */}
+        {/* <Route exact path ='/profile' render={(props) => <Profile user={user} />} />  */}
         
-        <Route exact path ='/trips' render={(props) => <TripContainer trip={trip} />} /> 
+        {/* <Route exact path ='/trips' render={(props) => <TripContainer trip={trip} />} />  */}
         <Route exact path ='/trips/new'  /> 
         <Route exact path ='/trips/:id' /> 
         <Route exact path ='/trips/:id/edit'  /> 
