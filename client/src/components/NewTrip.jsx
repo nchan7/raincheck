@@ -61,7 +61,12 @@ class NewTrip extends React.Component {
 
   handleNewTripSubmit(e) {
     e.preventDefault()
-    axios.post('/trips/', {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${this.props.token}`
+        }
+    }
+    axios.post('/trips', {
         tripName: this.state.tripName,
         zipStart: this.state.zipStart, 
         startTime: this.state.startTime,
@@ -69,19 +74,13 @@ class NewTrip extends React.Component {
         zipDest: this.state.zipDest,
         returnTime: this.state.returnTime,
         returnTravelTime: this.state.returnTravelTime
-    }).then(res => {
-        if (res.data.type === 'error') {
-            this.setState({
-                message: res.data.message
-            })
-        } else {
-            this.setState({
-                message: res.data.message
-            })
-        }
+    }, config).then(res => {
+        localStorage.setItem('mernToken', res.data.token)
+        this.props.liftToken(res.data)        
     }).catch(err => {
         this.setState({
-            message: "Trip not saved. Try again."
+            message: "Trip not saved. Try again.",
+            err: err
         })
     })
 }
@@ -106,7 +105,7 @@ class NewTrip extends React.Component {
                 
                 <input onChange={this.handleStartTimeChange}
                     value={this.state.startTime}
-                    type="time"
+                    type="datetime-local"
                     name="startTime"
                     placeholder="Enter your departure time" /><br />
                 
@@ -123,7 +122,7 @@ class NewTrip extends React.Component {
                 
                 <input onChange={this.handleReturnTimeChange}
                     value={this.state.returnTime}
-                    type="time"
+                    type="datetime-local"
                     name="returnTime"
                     placeholder="Enter your return trip start time" /><br />
                 
