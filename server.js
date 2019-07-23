@@ -38,6 +38,7 @@ db.on('error', (err) => {
 // app.use('/auth/login', loginLimiter); //! Commented out for testing
 // app.use('/auth/signup', signupLimiter);
 
+
 app.use('/auth', require('./routes/auth'));
 app.use('/api', expressJWT({secret: process.env.JWT_SECRET}), require('./routes/api'));
 app.use('/trips', expressJWT({secret: process.env.JWT_SECRET}), require('./routes/trips'));
