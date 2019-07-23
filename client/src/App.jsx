@@ -4,7 +4,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Home from "./components/TripContainer";
 import Raincheck from "./components/Raincheck";
-import MyTrips from "./components/MyTrip";
+import MyTrips from "./components/MyTrips";
 import NewTrip from "./components/NewTrip";
 import EditTrip from "./components/EditTrip";
 import {
@@ -173,7 +173,7 @@ class App extends React.Component {
           {/* Show all trips for one user  {user.trips} */}
           <Route
             exact
-            path="/mytrip"
+            path="/mytrips"
             render={() => <MyTrips trip={this.state.trip} />}
           />
         {/* Had to comment out a few lines to prevent compile problems. -AdamG */}
