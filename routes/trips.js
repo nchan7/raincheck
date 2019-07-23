@@ -55,13 +55,15 @@ router.get('/:id', (req, res) => {
 
 // POST trip for a user - TESTING MAPBOX CONVERSION of zip to lat/long
 router.post('/', (req, res) => {
+    console.log("Hitting the POST new trip route");
     // var latStartFromZip;
     // var longStartFromZip;
 
     let locStart = req.body.zipStart; 
     geocodingClient.forwardGeocode({
     query: locStart
-    }).send().then( function(response) {   
+    }).send().then( function(response) {
+        console.log("We got the start lat long")
         var latStartFromZip = response.body.features[0].center[1];
         var longStartFromZip = response.body.features[0].center[0];
 
@@ -69,11 +71,14 @@ router.post('/', (req, res) => {
         geocodingClient.forwardGeocode({
             query: locDest
         }).send().then( function(response) {
+            console.log("We got the return lat long")
             var latDestFromZip = response.body.features[0].center[1];
             var longDestFromZip = response.body.features[0].center[0];
         
+            // let startDate = new Date(req.body.startTime);
         
-            User.findById(req.user, function(err, user){
+            User.findById(req.user._id, function(err, user){
+                console.log("We got the user")
                 Trips.create({
                     tripName: req.body.tripName,
                     zipStart: req.body.zipStart,
@@ -88,6 +93,9 @@ router.post('/', (req, res) => {
                     returnTravelTime: req.body.returnTravelTime
                 },
                 function(err, trip) {
+                    console.log("We created the trip")
+                    console.log(err);
+                    console.log(trip);
                     user.trips.push(trip)
                     user.save(function(err, user) {
                         if (err) res.json(err)
@@ -96,7 +104,9 @@ router.post('/', (req, res) => {
                 })
             })
         
-        })
+        }).catch((err) =>  {
+            console.log("Mapbox problem!!!!!");
+        });
 
 
 

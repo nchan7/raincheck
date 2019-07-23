@@ -5,12 +5,12 @@ const tripSchema = new mongoose.Schema({
     zipStart: Number,
     latStart: Number,
     longStart: Number,
-    startTime: Number, // need to change to Date or Timestamp after route testing
+    startTime: Date, // need to change to Date or Timestamp after route testing
     travelTime: Number,
     zipDest: Number,
     latDest: Number,
     longDest: Number,
-    returnTime: Number, // need to change to Date or Timestamp after route testing
+    returnTime: Date, // need to change to Date or Timestamp after route testing
     returnTravelTime: Number
 })
 
