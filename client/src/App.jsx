@@ -15,7 +15,7 @@ import {
 // added imports for header and footer -AdamG
 import Header from './Header'
 import Footer from './Footer'
-import NewTrip from './components/NewTrip';
+// import NewTrip from './components/NewTrip';
 
 
 class App extends React.Component {
@@ -198,12 +198,12 @@ class App extends React.Component {
             travelTime:
             returnTime: 
             returnTravelTime */}
-          <Route
+          {/* <Route
             exact
             path="/trips/new"
             render={() => (
-              <NewTrip trips={this.state.trip} zip={this.state.zip} />
-            )}
+              // <NewTrip trips={this.state.trip} zip={this.state.zip} /> */}
+            {/* )} */}
           />
 
           <Route
