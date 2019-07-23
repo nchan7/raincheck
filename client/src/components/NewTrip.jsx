@@ -13,6 +13,7 @@ class NewTrip extends React.Component {
             returnTime: '',
             returnTravelTime: ''        
         }
+        this.handleTripNameChange = this.handleTripNameChange.bind(this)
         this.handleZipStartChange = this.handleZipStartChange.bind(this)
         this.handleStartTimeChange = this.handleStartTimeChange.bind(this)
         this.handleTravelTimeChange = this.handleTravelTimeChange.bind(this)
@@ -22,6 +23,11 @@ class NewTrip extends React.Component {
         this.handleNewTripSubmit = this.handleNewTripSubmit.bind(this)
     }
     // Functions to handle the NewTrip Form submissions
+  handleTripNameChange(e) { 
+    this.setState({
+        tripName: e.target.value
+    })
+  }
   handleZipStartChange(e) { 
     this.setState({
         zipStart: e.target.value
@@ -55,7 +61,7 @@ class NewTrip extends React.Component {
 
   handleNewTripSubmit(e) {
     e.preventDefault()
-    axios.post('/trips', {
+    axios.post('/trips/', {
         tripName: this.state.tripName,
         zipStart: this.state.zipStart, 
         startTime: this.state.startTime,
@@ -97,11 +103,13 @@ class NewTrip extends React.Component {
                     type="number"
                     name="zipStart"
                     placeholder="Enter your origin zipcode" /><br />
+                
                 <input onChange={this.handleStartTimeChange}
                     value={this.state.startTime}
                     type="time"
                     name="startTime"
                     placeholder="Enter your departure time" /><br />
+                
                 <input onChange={this.handleTravelTimeChange}
                     value={this.state.travelTime}
                     type="number"
@@ -112,12 +120,14 @@ class NewTrip extends React.Component {
                     type="number"
                     name="zipDest"
                     placeholder="Enter your destination zipcode" /><br />
-                <input onChange={this.handleReturnTime}
+                
+                <input onChange={this.handleReturnTimeChange}
                     value={this.state.returnTime}
                     type="time"
                     name="returnTime"
                     placeholder="Enter your return trip start time" /><br />
-                <input onChange={this.handleReturnTravelTime}
+                
+                <input onChange={this.handleReturnTravelTimeChange}
                     value={this.state.returnTravelTime}
                     type="number"
                     name="returnTravelTime"
