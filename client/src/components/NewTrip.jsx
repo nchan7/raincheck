@@ -11,7 +11,7 @@ class NewTrip extends React.Component {
             travelTime: '',
             zipDest: '',
             returnTime: '',
-            returnTravelTime: ''        
+            returnTravelTime: ''
         }
         this.handleTripNameChange = this.handleTripNameChange.bind(this)
         this.handleZipStartChange = this.handleZipStartChange.bind(this)
@@ -23,41 +23,41 @@ class NewTrip extends React.Component {
         this.handleNewTripSubmit = this.handleNewTripSubmit.bind(this)
     }
     // Functions to handle the NewTrip Form submissions
-  handleTripNameChange(e) { 
-    this.setState({
-        tripName: e.target.value
-    })
-  }
-  handleZipStartChange(e) { 
-    this.setState({
-        zipStart: e.target.value
-    })
-  }
-  handleStartTimeChange(e) { 
-    this.setState({
-        startTime: e.target.value
-    })
-  }
-  handleTravelTimeChange(e) { 
-    this.setState({
-        travelTime: e.target.value
-    })
-  }
-  handleZipDestChange(e) { 
-    this.setState({
-        zipDest: e.target.value
-    })
-  }
-  handleReturnTimeChange(e) { 
-    this.setState({
-        returnTime: e.target.value
-    })
-  }
-  handleReturnTravelTimeChange(e) { 
-    this.setState({
-        returnTravelTime: e.target.value
-    })
-  }
+    handleTripNameChange(e) {
+        this.setState({
+            tripName: e.target.value
+        })
+    }
+    handleZipStartChange(e) {
+        this.setState({
+            zipStart: e.target.value
+        })
+    }
+    handleStartTimeChange(e) {
+        this.setState({
+            startTime: e.target.value
+        })
+    }
+    handleTravelTimeChange(e) {
+        this.setState({
+            travelTime: e.target.value
+        })
+    }
+    handleZipDestChange(e) {
+        this.setState({
+            zipDest: e.target.value
+        })
+    }
+    handleReturnTimeChange(e) {
+        this.setState({
+            returnTime: e.target.value
+        })
+    }
+    handleReturnTravelTimeChange(e) {
+        this.setState({
+            returnTravelTime: e.target.value
+        })
+    }
 
   handleNewTripSubmit(e) {
     e.preventDefault()
@@ -82,10 +82,8 @@ class NewTrip extends React.Component {
             message: "Trip not saved. Try again.",
             err: err
         })
-    })
-}
-  render() {
-
+    }
+    render() {
       return (
           <>
       {/* // Let's return the form that allows people to save a trip. Below is sample code*/}
@@ -136,11 +134,10 @@ class NewTrip extends React.Component {
             </div>
             </>
         )
-            
-            
+
+
     }
-            
+
 }
-       
+
 export default NewTrip;
-        
