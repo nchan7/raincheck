@@ -60,27 +60,28 @@ class NewTrip extends React.Component {
     }
 
   handleNewTripSubmit(e) {
-    e.preventDefault()
-    let config = {
-        headers: {
-            Authorization: `Bearer ${this.props.token}`
+        e.preventDefault()
+        let config = {
+            headers: {
+                Authorization: `Bearer ${this.props.token}`
+            }
         }
-    }
-    axios.post('/trips', {
-        tripName: this.state.tripName,
-        zipStart: this.state.zipStart, 
-        startTime: this.state.startTime,
-        travelTime: this.state.travelTime,
-        zipDest: this.state.zipDest,
-        returnTime: this.state.returnTime,
-        returnTravelTime: this.state.returnTravelTime
-    }, config).then(res => {
-        localStorage.setItem('mernToken', res.data.token)
-        this.props.liftToken(res.data)        
-    }).catch(err => {
-        this.setState({
-            message: "Trip not saved. Try again.",
-            err: err
+        axios.post('/trips', {
+            tripName: this.state.tripName,
+            zipStart: this.state.zipStart, 
+            startTime: this.state.startTime,
+            travelTime: this.state.travelTime,
+            zipDest: this.state.zipDest,
+            returnTime: this.state.returnTime,
+            returnTravelTime: this.state.returnTravelTime
+        }, config).then(res => {
+            localStorage.setItem('mernToken', res.data.token)
+            this.props.liftToken(res.data)        
+        }).catch(err => {
+            this.setState({
+                message: "Trip not saved. Try again.",
+                err: err
+            })
         })
     }
     render() {
