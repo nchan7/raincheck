@@ -16,7 +16,17 @@ class App extends React.Component {
       token: '',
       user: null,
       errorMessage: '',
-      apiData: null
+      apiData: null,
+      name: '',
+      latStart: '',
+      longStart: '',
+      startTime: 0,
+      travelTime: 0,
+      latDest: '',
+      longDest: '',
+      returnTime: 0,
+      returnTravelTime: 0,
+
     }
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
     this.liftToken = this.liftToken.bind(this) 
