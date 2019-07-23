@@ -17,7 +17,6 @@ import Header from './Header'
 import Footer from './Footer'
 
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -156,11 +155,11 @@ class App extends React.Component {
       {/* {contents} */}
         <Header />
         <Router>
-          <Route
+          {/* <Route
             exact
             path="/"
             render={() => <Home user={this.state.user} />}
-          />
+          /> */}
 
 
           {/* Show the weather for a single trip f*/}
@@ -198,13 +197,13 @@ class App extends React.Component {
             travelTime:
             returnTime: 
             returnTravelTime */}
-          <Route
+          {/* <Route
             exact
             path="/trips/new"
             render={() => (
               <NewTrip trip={this.state.trip} />
             )}
-          />
+          /> */}
 
           <Route
             exact
