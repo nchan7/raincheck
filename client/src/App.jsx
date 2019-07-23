@@ -15,6 +15,8 @@ import {
 // added imports for header and footer -AdamG
 import Header from './Header'
 import Footer from './Footer'
+import NewTrip from './components/NewTrip';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -23,17 +25,19 @@ class App extends React.Component {
       token: '',
       user: null,
       errorMessage: '',
-      apiData: null,
-      tripName: '',
-      latStart: '',
-      longStart: '',
-      startTime: 0,
-      travelTime: 0,
-      latDest: '',
-      longDest: '',
-      returnTime: 0,
-      returnTravelTime: 0,
-
+      trip: {
+        tripName: '',
+        zipStart: '',
+        latStart: '',
+        longStart: '',
+        startTime: '',
+        travelTime: '',
+        zipDest: '',
+        latDest: '',
+        longDest: '',
+        returnTime: '',
+        returnTravelTime: ''
+      }
     }
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
     this.liftToken = this.liftToken.bind(this)
@@ -124,6 +128,7 @@ class App extends React.Component {
     })
   }
 
+
   render() {
     var user = this.state.user
     var contents
@@ -157,25 +162,32 @@ class App extends React.Component {
             render={() => <Home user={this.state.user} />}
           />
 
+
           {/* Show the weather for a single trip f*/}
           <Route
             exact
             path="/raincheck"
-            render={() => <Raincheck trips={this.state.trip}
-                                      startTime={this.state.startTime}
-                                      travelTime={this.state.travelTime} 
-                                      returnTime={this.state.returnTime} 
-                                      returnTravelTime={this.state.returnTravelTime} 
-                                      apiData={this.state.apiData} 
-                                      tripName={this.state.tripName}/>}
+            render={() => <Raincheck trip={this.state.trip}/>}
           />
 
           {/* Show all trips for one user  {user.trips} */}
           <Route
             exact
             path="/mytrip"
-            render={() => <MyTrips trips={this.state.trips} />}
+            render={() => <MyTrips trip={this.state.trip} />}
           />
+        {/* Had to comment out a few lines to prevent compile problems. -AdamG */}
+        {/* <Route exact path ='/' component={Home} d/> */}
+        {/* <Route exact path ='/profile' render={(props) => <Profile user={user} />} />  */}
+        
+        {/* <Route exact path ='/trips' render={(props) => <TripContainer trip={trip} />} />  */}
+        <Route exact path ='/trips/new' component={NewTrip}/> 
+        <Route exact path ='/trips/:id' /> 
+        <Route exact path ='/trips/:id/edit'  /> 
+
+        {/* Route to each page here or in the TripContainer Component? */}
+        
+
 
           {/* We will pass the geocode function inside new trip so user can input zipcode 
             startLat
