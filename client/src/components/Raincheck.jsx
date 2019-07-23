@@ -45,7 +45,7 @@ const Raincheck = (props) => {
             <div class="returntime">
                 <h2>Return Time: {props.trip.returnTime}</h2>
                 <h2> Return Travel Time: {props.trip.returnTravelTime}</h2>
-                <h3>weather data goes here!</h3>
+                <h2>weather data goes here!</h2>
             </div>
 
 
