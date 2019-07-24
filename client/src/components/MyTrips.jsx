@@ -1,28 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react'
+import axios from 'axios';
 
-const MyTrips = props => {
-  let trips;
-  // if (props.user.length) {
-    // trips = props.user.map((trip, i) => {
-      // return <h4 key={i}>{trip.name}</h4>
-    // })
-  // } else {
-    // trips = <h4>Create a New Trip!</h4>
+class MyTrips extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+
+
+  // componentDidMount() {
+  //  axios.get('/trips/' + this.props.user.trips).then(res=>{
+  //     console.log(res.data);
+  //   })
   // }
-  return (
-      <>
-        <div>
-          {props.user} 
-          {/* Why is this not showing up */}
-        </div>
-      {/* // Returns a list of trips 
-        * // We will render the "nameTrip state"
+
+
+
+
+  render() {
+  
+
+// const MyTrips = props => {
+//   let trips;
+//   // if (props.user.length) {
+//     // trips = props.user.map((trip, i) => {
+//       // return <h4 key={i}>{trip.name}</h4>
+//     // })
+//   // } else {
+//     // trips = <h4>Create a New Trip!</h4>
+//   // }
+//   return (
+//       <>
+//         <div>
+//           {props.user} 
+//           {/* Why is this not showing up */}
+//         </div>
+//       {/* // Returns a list of trips 
+//         * // We will render the "nameTrip state"
         
-      */}
+//       */}
       
-      </>
-  )
-}
+//       </>
+//   )
+// }
 
 
 // let airlines; 
@@ -48,3 +68,4 @@ const MyTrips = props => {
 //     )
 
 export default MyTrips;
+

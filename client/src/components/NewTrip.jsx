@@ -58,6 +58,7 @@ class NewTrip extends React.Component {
             returnTravelTime: e.target.value
         })
     }
+  
     handleNewTripSubmit(e) {
         e.preventDefault()
         let config = {
@@ -67,7 +68,7 @@ class NewTrip extends React.Component {
         }
         axios.post('/trips', {
             tripName: this.state.tripName,
-            zipStart: this.state.zipStart, 
+            zipStart: this.state.zipStart,
             startTime: this.state.startTime,
             travelTime: this.state.travelTime,
             zipDest: this.state.zipDest,
@@ -75,7 +76,7 @@ class NewTrip extends React.Component {
             returnTravelTime: this.state.returnTravelTime
         }, config).then(res => {
             localStorage.setItem('mernToken', res.data.token)
-            this.props.liftToken(res.data)        
+            this.props.liftToken(res.data)
         }).catch(err => {
             this.setState({
                 message: "Trip not saved. Try again.",
