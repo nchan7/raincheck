@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 
-class MyTrips extends Component {
-  constructor(props) {
-    super(props)
-  }
+// class MyTrips extends Component {
+//   constructor(props) {
+//     super(props)
+//   }
 
 
 
@@ -17,36 +17,36 @@ class MyTrips extends Component {
 
 
 
-  render() {
-    return (
-      <>
-      </>
-    )
+  // render() {
+  //   return (
+  //     <>
+  //     </>
+  //   )
   
 
-// const MyTrips = props => {
-//   let trips;
-//   // if (props.user.length) {
-//     // trips = props.user.map((trip, i) => {
-//       // return <h4 key={i}>{trip.name}</h4>
-//     // })
-//   // } else {
-//     // trips = <h4>Create a New Trip!</h4>
-//   // }
-//   return (
-//       <>
-//         <div>
-//           {props.user} 
-//           {/* Why is this not showing up */}
-//         </div>
-//       {/* // Returns a list of trips 
-//         * // We will render the "nameTrip state"
+const MyTrips = props => {
+  let trips;
+  if (props.user.trips.length) {
+    trips = props.user.trips.map((trip, i) => {
+      return <h4 key={i}>{trip.tripName}</h4>
+    })
+  } else {
+    trips = <h4>Create a New Trip!</h4>
+  }
+  return (
+      <>
+        <div>
+          {trips} 
+          {/* Why is this not showing up */}
+        </div>
+      {/* // Returns a list of trips 
+        * // We will render the "nameTrip state"
         
-//       */}
+      */}
       
-//       </>
-//   )
-// }
+      </>
+  )
+}
 
 
 // let airlines; 
@@ -70,7 +70,7 @@ class MyTrips extends Component {
 //             </form>
 //         </div>
 //     )
-  }
-}
+//   }
+// }
 export default MyTrips;
 
