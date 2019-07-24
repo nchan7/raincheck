@@ -193,7 +193,8 @@ class App extends React.Component {
         {/* <Route exact path ='/trips' render={(props) => <TripContainer trip={trip} />} />  */}
         <Route exact path ='/trips/new' render={() => <NewTrip liftToken={this.liftToken} token={this.state.token}/>} /> 
         <Route exact path ='/trips/:id' /> 
-        <Route exact path ='/trips/:id/edit'  /> 
+        <Route exact path ='/trips/:id/edit'  
+                render={() => <EditTrip liftToken={this.liftToken} token={this.state.token}/>}   /> 
 
         {/* Route to each page here or in the TripContainer Component? */}
         
@@ -215,12 +216,6 @@ class App extends React.Component {
               <NewTrip trip={this.state.trip} />
             )}
           /> */}
-
-          <Route
-            exact
-            path="/trips/:id/edit"
-            render={() => <EditTrip trip={this.state.trip} />}
-          />
         </Router>
 
         <Footer />

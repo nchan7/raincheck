@@ -58,8 +58,7 @@ class NewTrip extends React.Component {
             returnTravelTime: e.target.value
         })
     }
-
-  handleNewTripSubmit(e) {
+    handleNewTripSubmit(e) {
         e.preventDefault()
         let config = {
             headers: {
