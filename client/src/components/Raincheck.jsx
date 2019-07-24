@@ -1,5 +1,14 @@
 import React from 'react';
 
+
+// let weatherUrl = 'https://api.darksky.net/forecast/' + process.env.DARK_SKY_API + '/' + trail.latitude + ',' + trail.longitude;
+//                 axios.get(weatherUrl).then( function (results) {
+//                     let name = trail.name;
+//                     let weather = results.data.daily.data.map( function(temp) {
+//                         return temp.temperatureMax;
+//                     })
+
+
 const Raincheck = (props) => {
     return (
         <>
