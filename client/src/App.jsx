@@ -173,6 +173,14 @@ class App extends React.Component {
         {contents}
         <Header />
         <Router>
+        <nav>
+          <Link to='/'>LocalHost3000000000</Link>{'  |  '} 
+          <Link to='/raincheck'>Raincheck</Link>{'  |  '} 
+          <Link to='/trips/new'>New Trip</Link>{'  |  '} 
+          <Link to='/trips/:id'>Show Trip</Link>{'  |  '} 
+          <Link to='/trips/5d37903573e6e252c1c954f6/edit'>Edit Trip</Link>{'  |  '} 
+          <Link to='/trips/mytrips'>My Trips</Link>
+        </nav>
           {/* <Route
             exact
             path="/"

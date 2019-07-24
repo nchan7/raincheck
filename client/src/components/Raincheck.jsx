@@ -22,7 +22,7 @@ export class Raincheck extends Component {
                 //             * What To Render on this Page = "StartTime-TravelTime" State & "ReturnTime-ReturnTravelTime" State & apiData- tripName */}
 
 
-                <h1 className="App"> Morning weather route:{this.props.user.name}</h1>
+                <h1 className="App"> Morning weather route:{this.props.user.trips[0].tripName}</h1>
                 {/* 
             //             <div class="starttime" className="App">
             //                 <h2>Start Time: {props.trip.startTime}</h2>
