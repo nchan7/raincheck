@@ -13,38 +13,47 @@ const Raincheck = (props) => {
 
             <h1 className="App"> Morning weather route: {props.user.trips[0].tripName}</h1>
 
-            <div class="starttime" className="App">
-                <h2>Start Time: {props.user.trips[0].startTime}</h2>
-                <h2> Travel Time: {props.user.trips[0].travelTime}</h2>
-                <h3>weather data goes here!</h3>
+            <div className="Flex">
+
+                <div className="Starttime">
+                    <h2>Start Time: {props.user.trips[0].startTime}</h2>
+                    <h2> Travel Time: {props.user.trips[0].travelTime}</h2>
+                    <h3>weather data goes here!</h3>
+                </div>
+
+
+                <div className="Traveltime">
+                    <h2>Return Time: {props.user.trips[0].returnTime}</h2>
+                    <h2> Return Travel Time: {props.user.trips[0].returnTravelTime}</h2>
+                    <h3>weather data goes here!</h3>
+
+                </div>
+
             </div>
 
-            <hr />
-            <div class="traveltime" className="App">
-                <h2>Return Time: {props.user.trips[0].returnTime}</h2>
-                <h2> Return Travel Time: {props.user.trips[0].returnTravelTime}</h2>
-                <h3>weather data goes here!</h3>
 
-            </div>
-            <br/>
-            <hr />
             <h1 className="App"> Evening weather route: {props.user.trips[0].tripName}</h1>
-            <div class="returntime" className="App">
-                <h2>Start Time: {props.user.trips[0].startTime}</h2>
-                <h2> Travel Time: {props.user.trips[0].travelTime}</h2>
-                <h3>weather data goes here!</h3>
+
+            <div className="Flextwo">
+
+                <div className="Returntime">
+                    <h2>Start Time: {props.user.trips[0].startTime}</h2>
+                    <h2> Travel Time: {props.user.trips[0].travelTime}</h2>
+                    <h3>weather data goes here!</h3>
+                </div>
+
+
+                <div className="ReturnTravel">
+
+                    <h2>Return Time: {props.user.trips[0].returnTime}</h2>
+                    <h2> Return Travel Time: {props.user.trips[0].returnTravelTime}</h2>
+                    <h3>weather data goes here!</h3>
+
+                </div>
+
             </div>
+            <button className="button">My Back Trip</button>
 
-            <hr />
-            <div class="returntravel" className="App">
-
-                <h2>Return Time: {props.user.trips[0].returnTime}</h2>
-                <h2> Return Travel Time: {props.user.trips[0].returnTravelTime}</h2>
-                <h3>weather data goes here!</h3>
-
-            </div>
-            
-            <button className="App">My Back Trip</button>
 
         </>
     )
