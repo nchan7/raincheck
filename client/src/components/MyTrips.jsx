@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react'
+import axios from 'axios';
 
-const MyTrips = props => {
+class MyTrips extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+
+
+  // componentDidMount() {
+  //  axios.get('/trips/' + this.props.user.trips).then(res=>{
+  //     console.log(res.data);
+  //   })
+  // }
+
+
+
+
+  render() {
+  
+
     return (
-        <>
-        {/* // Returns a list of trips 
-          * // We will render the "nameTrip state"
-          
-        */}
-        
-        </>
+      <div>
+        <h1>test{}</h1>
+      </div>
     )
+  }
 }
 
-export default MyTrips;
+export default MyTrips

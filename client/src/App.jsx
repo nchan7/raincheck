@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Login from './Login';
+import './App.css';
 import Signup from './Signup';
 import Home from "./components/TripContainer";
 import Raincheck from "./components/Raincheck";
@@ -24,19 +25,20 @@ class App extends React.Component {
       token: '',
       user: null,
       errorMessage: '',
-      trip: {
-        tripName: '',
-        zipStart: '',
-        latStart: '',
-        longStart: '',
-        startTime: '',
-        travelTime: '',
-        zipDest: '',
-        latDest: '',
-        longDest: '',
-        returnTime: '',
-        returnTravelTime: ''
-      }
+      trips: null
+      // trip: {
+      //   tripName: '',
+      //   zipStart: '',
+      //   latStart: '',
+      //   longStart: '',
+      //   startTime: '',
+      //   travelTime: '',
+      //   zipDest: '',
+      //   latDest: '',
+      //   longDest: '',
+      //   returnTime: '',
+      //   returnTravelTime: ''
+      // }
     }
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
     this.liftToken = this.liftToken.bind(this)
@@ -69,6 +71,7 @@ class App extends React.Component {
             this.setState({
               token: res.data.token,
               user: res.data.user,
+              trips: res.data.user.trips,
               errorMessage: ''
             })
           }
@@ -102,14 +105,10 @@ class App extends React.Component {
   }
 
 
-
-
-
-
-
   componentDidMount() {
     this.checkForLocalToken()
   }
+
 
   // The testRoute function was used to toubleshoot the api information
   testRoute(e) {
@@ -126,6 +125,8 @@ class App extends React.Component {
       })
     })
   }
+
+
 
 
   render() {
@@ -152,7 +153,7 @@ class App extends React.Component {
     var trip = this.state.trip
     return (
       <>
-      {contents}
+        {contents}
         <Header />
         <Router>
           {/* <Route
@@ -166,26 +167,26 @@ class App extends React.Component {
           <Route
             exact
             path="/raincheck"
-            render={() => <Raincheck trip={this.state.trip}/>}
+          render={() => <Raincheck user={this.state.user} trips={this.state.trips} checkForLocalToken={this.checkForLocalToken}   />}
           />
 
           {/* Show all trips for one user  {user.trips} */}
           <Route
             exact
             path="/mytrips"
-            render={() => <MyTrips trip={this.state.trip} />}
+            render={() => <MyTrips user={this.state.user} />}
           />
-        {/* Had to comment out a few lines to prevent compile problems. -AdamG */}
-        {/* <Route exact path ='/' component={Home} d/> */}
-        {/* <Route exact path ='/profile' render={(props) => <Profile user={user} />} />  */}
-        
-        {/* <Route exact path ='/trips' render={(props) => <TripContainer trip={trip} />} />  */}
-        <Route exact path ='/trips/new' render={() => <NewTrip liftToken={this.liftToken} token={this.state.token}/>} /> 
-        <Route exact path ='/trips/:id' /> 
-        <Route exact path ='/trips/:id/edit'  /> 
+          {/* Had to comment out a few lines to prevent compile problems. -AdamG */}
+          {/* <Route exact path ='/' component={Home} d/> */}
+          {/* <Route exact path ='/profile' render={(props) => <Profile user={user} />} />  */}
 
-        {/* Route to each page here or in the TripContainer Component? */}
-        
+          {/* <Route exact path ='/trips' render={(props) => <TripContainer trip={trip} />} />  */}
+          <Route exact path='/trips/new' render={() => <NewTrip liftToken={this.liftToken} token={this.state.token} />} />
+          <Route exact path='/trips/:id' />
+          <Route exact path='/trips/:id/edit' />
+
+          {/* Route to each page here or in the TripContainer Component? */}
+
 
 
           {/* We will pass the geocode function inside new trip so user can input zipcode 
