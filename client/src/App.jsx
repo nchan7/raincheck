@@ -25,8 +25,8 @@ class App extends React.Component {
     this.state = {
       token: '',
       user: null,
-      errorMessage: '',
-      trips: null
+      errorMessage: ''
+      // trips: null
       // trip: {
       //   tripName: '',
       //   zipStart: '',
@@ -73,7 +73,7 @@ class App extends React.Component {
             this.setState({
               token: res.data.token,
               user: res.data.user,
-              trips: res.data.user.trips,
+              // trips: res.data.user.trips,
               errorMessage: ''
             })
           }
