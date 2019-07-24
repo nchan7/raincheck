@@ -36,9 +36,9 @@ router.post('/', (req, res) => {
     geocodingClient.forwardGeocode({
     query: locStart
     }).send().then( function(response) {
-        console.log("We got the start lat long")
         var latStartFromZip = response.body.features[0].center[1];
         var longStartFromZip = response.body.features[0].center[0];
+        console.log("We got the start lat long")
 
         let locDest = req.body.zipDest;
         console.log('locDest', locDest)
@@ -70,7 +70,7 @@ router.post('/', (req, res) => {
                     user.trips.push(trip)
                     user.save(function(err, user) {
                         if (err) res.json(err)
-                        res.json({user})
+                        res.json(trip) // return the trip id -AdamG
                     })
                 })
             })
