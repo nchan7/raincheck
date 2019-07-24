@@ -27,39 +27,11 @@ router.get('/:id', (req, res) => {
 });
 
 
-// POST trip for a user - WORKING
-// router.post('/', (req, res) => {
-//     User.findById(req.user, function(err, user){
-//         Trips.create({
-//             tripName: req.body.tripName,
-//             zipStart: req.body.zipStart,
-//             latStart: req.body.latStart,
-//             longStart: req.body.longStart,
-//             startTime: req.body.startTime,
-//             travelTime: req.body.travelTime,
-//             zipDest: req.body.zipDest,
-//             latDest: req.body.latDest,
-//             longDest: req.body.longDest,
-//             returnTime: req.body.returnTime,
-//             returnTravelTime: req.body.returnTravelTime
-//         },
-//         function(err, trip) {
-//             user.trips.push(trip)
-//             user.save(function(err, user) {
-//                 if (err) res.json(err)
-//                 res.json({user})
-//             })
-//         })
-//     })
-// });
-
 // POST trip for a user - TESTING MAPBOX CONVERSION of zip to lat/long
 router.post('/', (req, res) => {
     console.log("Hitting the POST new trip route");
-    // var latStartFromZip;
-    // var longStartFromZip;
-
     let locStart = req.body.zipStart; 
+    console.log("locStart", locStart)
     geocodingClient.forwardGeocode({
     query: locStart
     }).send().then( function(response) {
@@ -68,6 +40,7 @@ router.post('/', (req, res) => {
         var longStartFromZip = response.body.features[0].center[0];
 
         let locDest = req.body.zipDest;
+        console.log('locDest', locDest)
         geocodingClient.forwardGeocode({
             query: locDest
         }).send().then( function(response) {
@@ -93,9 +66,6 @@ router.post('/', (req, res) => {
                     returnTravelTime: req.body.returnTravelTime
                 },
                 function(err, trip) {
-                    console.log("We created the trip")
-                    console.log(err);
-                    console.log(trip);
                     user.trips.push(trip)
                     user.save(function(err, user) {
                         if (err) res.json(err)
@@ -103,30 +73,46 @@ router.post('/', (req, res) => {
                     })
                 })
             })
-        
         }).catch((err) =>  {
             console.log("Mapbox problem!!!!!");
         });
-
-
-
     })
-    
 });
 
 // UPDATE trip for a user
 router.put('/:id', (req, res) => {
+    console.log("Hitting the PUT new trip route");
+    let locStart = req.body.zipStart; 
+    console.log("PUT locStart", locStart)
+    geocodingClient.forwardGeocode({
+    query: locStart
+    }).send().then( function(response) {
+        console.log("We got the PUT start lat long")
+        var latStartFromZip = response.body.features[0].center[1];
+        var longStartFromZip = response.body.features[0].center[0];
+
+        let locDest = req.body.zipDest;
+        console.log('PUT locDest', locDest)
+        geocodingClient.forwardGeocode({
+            query: locDest
+        }).send().then( function(response) {
+            console.log("PUT We got the return lat long")
+            var latDestFromZip = response.body.features[0].center[1];
+            var longDestFromZip = response.body.features[0].center[0];
+        
+    
+        
         Trips.findByIdAndUpdate(req.params.id, 
             {
                 tripName: req.body.tripName,
                 zipStart: req.body.zipStart,
-                latStart: req.body.latStart,
-                longStart: req.body.longStart,
+                latStart: latStartFromZip,
+                longStart: longStartFromZip,
                 startTime: req.body.startTime,
                 travelTime: req.body.travelTime,
                 zipDest: req.body.zipDest,
-                latDest: req.body.latDest,
-                longDest: req.body.longDest,
+                latDest: latDestFromZip,
+                longDest: longDestFromZip,
                 returnTime: req.body.returnTime,
                 returnTravelTime: req.body.returnTravelTime
             },{new: true}, 
@@ -134,6 +120,8 @@ router.put('/:id', (req, res) => {
                     if (err) res.json(err)
                     res.json({trip})
             })
+        })
+    })
 })
 
 // DELETE trip for a user
