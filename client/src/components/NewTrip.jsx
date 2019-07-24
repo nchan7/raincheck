@@ -91,46 +91,46 @@ class NewTrip extends React.Component {
             <div className="">
             <h3>Create a New Trip</h3>
             <form onSubmit={this.handleNewTripSubmit}>
-                <input onChange={this.handleTripNameChange}
+                Trip Name: <input className="textbox" onChange={this.handleTripNameChange}
                     value={this.state.tripName}
                     type="text"
                     name="tripName"
                     placeholder="Trip title..." /><br />
-                <input onChange={this.handleZipStartChange}
+                Origin ZipCode: <input className="textbox" onChange={this.handleZipStartChange}
                     value={this.state.zipStart}
                     type="number"
                     name="zipStart"
                     placeholder="Enter your origin zipcode" /><br />
                 
-                <input onChange={this.handleStartTimeChange}
+                Start Time: <input className="textbox" onChange={this.handleStartTimeChange}
                     value={this.state.startTime}
                     type="datetime-local"
                     name="startTime"
                     placeholder="Enter your departure time" /><br />
                 
-                <input onChange={this.handleTravelTimeChange}
+                Travel Time: <input className="textbox" onChange={this.handleTravelTimeChange}
                     value={this.state.travelTime}
                     type="number"
                     name="travelTime"
                     placeholder="Enter your estimated travel time..." /><br />
-                <input onChange={this.handleZipDestChange}
+                Destination ZipCode <input className="textbox" onChange={this.handleZipDestChange}
                     value={this.state.zipDest}
                     type="number"
                     name="zipDest"
                     placeholder="Enter your destination zipcode" /><br />
                 
-                <input onChange={this.handleReturnTimeChange}
+                <input className="textbox" onChange={this.handleReturnTimeChange}
                     value={this.state.returnTime}
                     type="datetime-local"
                     name="returnTime"
                     placeholder="Enter your return trip start time" /><br />
                 
-                <input onChange={this.handleReturnTravelTimeChange}
+                <input className="textbox" onChange={this.handleReturnTravelTimeChange}
                     value={this.state.returnTravelTime}
                     type="number"
                     name="returnTravelTime"
                     placeholder="Enter your estimated travel time..." /><br />
-                <input type="submit" value="Save Trip!" />
+                <input className="button" type="submit" value="Save Trip!" />
             </form>
             </div>
             </>

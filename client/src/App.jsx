@@ -15,6 +15,7 @@ import {
 // added imports for header and footer -AdamG
 import Header from './Header'
 import Footer from './Footer'
+import './App.css'
 
 
 class App extends React.Component {
@@ -42,6 +43,7 @@ class App extends React.Component {
     this.liftToken = this.liftToken.bind(this)
     this.logout = this.logout.bind(this)
     this.testRoute = this.testRoute.bind(this)
+    this.getUsersTrips = this.getUsersTrips.bind(this)
   }
 
   checkForLocalToken() {
@@ -101,7 +103,19 @@ class App extends React.Component {
     })
   }
 
-
+  getUsersTrips() {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${this.state.token}`
+      }
+    }
+    axios.get("/trips", config)
+      .then(res => {
+        this.setState({
+          user: res.data
+        })
+      })
+  }
 
 
 
@@ -109,6 +123,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.checkForLocalToken()
+    // this.getUsersTrips()
   }
 
   // The testRoute function was used to toubleshoot the api information
@@ -170,11 +185,7 @@ class App extends React.Component {
           />
 
           {/* Show all trips for one user  {user.trips} */}
-          <Route
-            exact
-            path="/mytrips"
-            render={() => <MyTrips trip={this.state.trip} />}
-          />
+        <Route exact path="/trips/mytrips" render={() => <MyTrips user={this.state.user} />}/>
         {/* Had to comment out a few lines to prevent compile problems. -AdamG */}
         {/* <Route exact path ='/' component={Home} d/> */}
         {/* <Route exact path ='/profile' render={(props) => <Profile user={user} />} />  */}
