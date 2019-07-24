@@ -1,10 +1,17 @@
-body {
+ body {
   margin: 0 auto; 
   text-align: center;
   background-image: url('./img/Background2.jpg');
   background-attachment: fixed;
   background-size: cover;
   color: white;
+}
+
+
+@media only screen and (max-width: 600px) {
+  [class*="col-"] {
+    width: 100%;
+  }
 }
 
 .button {
@@ -21,6 +28,45 @@ body {
 
 .App {
   text-align: center;
+}
+
+.Flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.Flextwo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Starttime {
+  background-color: rgba(70, 143, 226, 0.3);
+  border: 1px solid black;
+  height: 300px;
+  width: 25%;
+}
+
+.Traveltime {
+  background-color: rgba(216, 226, 70, 0.3);
+  border: 1px solid black;
+  height: 300px;
+  width: 25%;
+}
+
+.Returntime {
+  background-color: rgba(32, 172, 8, 0.3);
+  border: 1px solid black;
+  height: 300px;
+  width: 25%;
+}
+
+.ReturnTravel {
+  background-color: rgba(253, 143, 0, 0.5);
+  border: 1px solid black;
+  height: 300px;
+  width: 25%;
 }
 
 .App-logo {
