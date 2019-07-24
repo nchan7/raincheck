@@ -58,9 +58,10 @@ class NewTrip extends React.Component {
             returnTravelTime: e.target.value
         })
     }
-  
+
     handleNewTripSubmit(e) {
         e.preventDefault()
+        console.log(this.props.token)
         let config = {
             headers: {
                 Authorization: `Bearer ${this.props.token}`
@@ -75,8 +76,11 @@ class NewTrip extends React.Component {
             returnTime: this.state.returnTime,
             returnTravelTime: this.state.returnTravelTime
         }, config).then(res => {
-            localStorage.setItem('mernToken', res.data.token)
-            this.props.liftToken(res.data)
+            // Here, take the data you just got and put it in state.
+            // Then you can pass it down as props to be rendered.
+            // Use react router redirection a la Mike
+            
+
         }).catch(err => {
             this.setState({
                 message: "Trip not saved. Try again.",
@@ -85,8 +89,8 @@ class NewTrip extends React.Component {
         })
     }
     render() {
-      return (
-          <>
+        return (
+            <>
       {/* // Let's return the form that allows people to save a trip. Below is sample code*/}
             <div className="">
             <h3>Create a New Trip</h3>
@@ -135,10 +139,7 @@ class NewTrip extends React.Component {
             </div>
             </>
         )
-
-
     }
-
 }
 
 export default NewTrip;
