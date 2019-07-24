@@ -29,6 +29,7 @@ router.get('/:id', (req, res) => {
 
 // POST trip for a user - TESTING MAPBOX CONVERSION of zip to lat/long
 router.post('/', (req, res) => {
+    console.log(req.user._id)
     console.log("Hitting the POST new trip route");
     let locStart = req.body.zipStart; 
     console.log("locStart", locStart)
@@ -49,7 +50,7 @@ router.post('/', (req, res) => {
             var longDestFromZip = response.body.features[0].center[0];
         
             // let startDate = new Date(req.body.startTime);
-        
+            
             User.findById(req.user._id, function(err, user){
                 console.log("We got the user")
                 Trips.create({
