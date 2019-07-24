@@ -18,6 +18,10 @@ class MyTrips extends Component {
 
 
   render() {
+    return (
+      <>
+      </>
+    )
   
 
 // const MyTrips = props => {
@@ -66,6 +70,7 @@ class MyTrips extends Component {
 //             </form>
 //         </div>
 //     )
-
+  }
+}
 export default MyTrips;
 
