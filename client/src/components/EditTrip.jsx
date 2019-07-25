@@ -11,8 +11,8 @@ class EditTrip extends React.Component {
             travelTime: '',
             zipDest: '',
             returnTime: '',
-            returnTravelTime: '',
-            tripId: ''
+            returnTravelTime: ''
+            // tripId: ''
         }
         this.handleTripNameChange = this.handleTripNameChange.bind(this)
         this.handleZipStartChange = this.handleZipStartChange.bind(this)
@@ -68,7 +68,7 @@ class EditTrip extends React.Component {
                 Authorization: `Bearer ${this.props.token}`
             }
         }
-        axios.put(`/trips/${this.trip.id}`, {
+        axios.put(`/trips/${this.props.match.params.id}`, {
             tripName: this.state.tripName,
             zipStart: this.state.zipStart, 
             startTime: this.state.startTime,
