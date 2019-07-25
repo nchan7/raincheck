@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const MyTrips = props => {
   let trips;
@@ -12,23 +12,23 @@ const MyTrips = props => {
         <div key={i} className="mytrips">
 
           <Link to={`/trips/mytrips/${trip._id}`}> {' '}
-              <h4>{trip.tripName}</h4>
+            <h4>{trip.tripName}</h4>
           </Link>
-          <button onClick={props.deleteTrips(trip._id)}>Delete</button>
+          <button onClick={() => props.deleteTrips(trip._id)}>Delete</button>
         </div>
       )
     })
   } else {
-  
+
     trips = <h4>Create a New Trip!</h4>
   }
-   
+
   return (
-      <>
-        <div>
-          {trips} 
-        </div>
-      </>
+    <>
+      <div>
+        {trips}
+      </div>
+    </>
   )
 }
 
