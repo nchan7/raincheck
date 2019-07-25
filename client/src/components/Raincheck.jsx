@@ -31,13 +31,15 @@ class Raincheck extends React.Component {
               Authorization: `Bearer ${this.props.token}`
             }
         }
-        console.log('Just before axios call on the front end')
-        axios.get(`/trips/${trip._id}`, config).then(results => {
-            console.log('After axios call')
+        console.log('Just before axios call on the front end', trip._id)
+        let url = `/trips/${trip._id}`
+        console.log(url)
+        axios.get(url, config).then(results => {
+            console.log('After axios call', results.data)
             this.setState({
-                currently: results.data.currently,
-                hourly: results.data.hourly,
-                daily: results.data.daily
+                currently: results.data.weather.currently.temperature,
+                hourly: results.data.weather.hourly,
+                daily: results.data.weather.daily
             })
         }).catch(err => {
             console.log(err)
@@ -108,7 +110,7 @@ class Raincheck extends React.Component {
                 <button className="button">My Back Trip</button>
             </Link>
 
-            <Link to={`/trips/${props.match.params.id}/edit`}> {' '}
+            <Link to={`/trips/${this.props.match.params.id}/edit`}> {' '}
                 <button className="button">Edit this trip</button>
             </Link>
 
