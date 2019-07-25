@@ -30,7 +30,7 @@ class App extends React.Component {
     this.liftToken = this.liftToken.bind(this)
     this.logout = this.logout.bind(this)
     // this.testRoute = this.testRoute.bind(this)
-    this.getUsersTrips = this.getUsersTrips.bind(this)
+    // this.getUsersTrips = this.getUsersTrips.bind(this)
   }
 
   checkForLocalToken() {
@@ -60,7 +60,7 @@ class App extends React.Component {
               user: res.data.user,
               // trips: res.data.user.trips,
               errorMessage: ''
-            })
+            }, this.getUsersTrips)
           }
         })
     }
@@ -97,19 +97,22 @@ class App extends React.Component {
     })
   }
 
-  getUsersTrips() {
-    let config = {
-      headers: {
-        Authorization: `Bearer ${this.state.token}`
-      }
-    }
-    axios.get("/trips", config)
-      .then(res => {
-        this.setState({
-          user: res.data
-        })
-      })
-  }
+  // getUsersTrips() {
+  //   let config = {
+  //     headers: {
+  //       Authorization: `Bearer ${this.state.token}`
+  //     }
+  //   }
+  //   axios.get("/trips", config)
+  //     .then(res => {
+  //       let trips = res.data
+  //       let user = Object.assign(this.state.user)
+  //       user.trips = trips
+  //       this.setState({
+  //         user
+  //       })
+  //     })
+  // }
 
 
   deleteTrips(tripId) {
@@ -132,7 +135,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.checkForLocalToken()
-    this.getUsersTrips()
+    // this.getUsersTrips()
   }
 
 
@@ -183,7 +186,7 @@ class App extends React.Component {
           <Link to='/'>LocalHost3000000000</Link>{'  |  '} 
           <Link to='/trips/new'>New Trip</Link>{'  |  '} 
           {/* <Link to='/trips/:id'>Show Trip</Link>{'  |  '}  */}
-          <Link to='/trips/:id/edit'>Edit Trip</Link>{'  |  '} 
+          {/* <Link to='/trips/:id/edit'>Edit Trip</Link>{'  |  '}  */}
           <Link to='/trips/mytrips'>My Trips</Link>
         </nav>
           {/* <Route
@@ -198,9 +201,12 @@ class App extends React.Component {
         <Route exact path ='/trips/new' render={() => <NewTrip liftUser={this.liftUser} token={this.state.token}/>} /> 
         <Route exact path ='/trips/:id' /> {/*  match.params of trip id -AdamG   */}
         <Route exact path ='/trips/:id/edit'  
-                render={() => <EditTrip liftToken={this.liftToken} token={this.state.token}/>}   /> 
-
-
+                render={(props) => <EditTrip 
+                                      liftToken={this.liftToken} 
+                                      user={this.state.user} 
+                                      token={this.state.token} 
+                                      {...props}/>
+                        }   /> 
 
           {/* <Route exact path='/issues' render={(props) => <Issues issues={issueCopy} />}/> 
         <Route exact path='/issues/:id' render={(props) => <IssueShow issues={issueCopy} {...props} />} />  */}
