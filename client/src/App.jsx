@@ -13,7 +13,6 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-// added imports for header and footer -AdamG
 import Header from './Header'
 import Footer from './Footer'
 import './App.css'
@@ -26,20 +25,6 @@ class App extends React.Component {
       token: '',
       user: null,
       errorMessage: ''
-      // trips: null
-      // trip: {
-      //   tripName: '',
-      //   zipStart: '',
-      //   latStart: '',
-      //   longStart: '',
-      //   startTime: '',
-      //   travelTime: '',
-      //   zipDest: '',
-      //   latDest: '',
-      //   longDest: '',
-      //   returnTime: '',
-      //   returnTravelTime: ''
-      // }
     }
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
     this.liftToken = this.liftToken.bind(this)
@@ -81,13 +66,6 @@ class App extends React.Component {
     }
   }
 
-  // liftToken(data) {
-  //   this.setState({
-  //     token: data.token,
-  //     user: data.user
-  //   })
-  // }
-
   //* Object Destructuring! 
   liftToken({ token, user }) {
     this.setState({
@@ -105,7 +83,6 @@ class App extends React.Component {
       user: null
     })
   }
-
 
   getUsersTrips() {
     let config = {
@@ -143,9 +120,6 @@ class App extends React.Component {
     })
   }
 
-
-
-
   render() {
     var user = this.state.user
     var contents
@@ -175,58 +149,28 @@ class App extends React.Component {
         <Router>
         <nav>
           <Link to='/'>LocalHost3000000000</Link>{'  |  '} 
-          <Link to='/raincheck'>Raincheck</Link>{'  |  '} 
           <Link to='/trips/new'>New Trip</Link>{'  |  '} 
-          <Link to='/trips/:id'>Show Trip</Link>{'  |  '} 
+          {/* <Link to='/trips/:id'>Show Trip</Link>{'  |  '}  */}
           <Link to='/trips/5d37903573e6e252c1c954f6/edit'>Edit Trip</Link>{'  |  '} 
           <Link to='/trips/mytrips'>My Trips</Link>
         </nav>
           {/* <Route
             exact
-            path="/"
-            render={() => <Home user={this.state.user} />}
-          /> */}
-
-
-          {/* Show the weather for a single trip f*/}
-          <Route
-            exact
             path="/raincheck"
           render={() => <Raincheck user={this.state.user} trips={this.state.trips} checkForLocalToken={this.checkForLocalToken}   />}
-          />
-
-          {/* Show all trips for one user  {user.trips} */}
+          /> */}
 
         <Route exact path="/trips/mytrips" render={() => <MyTrips user={this.state.user} />}/>
-        {/* Had to comment out a few lines to prevent compile problems. -AdamG */}
-        {/* <Route exact path ='/' component={Home} d/> */}
-        {/* <Route exact path ='/profile' render={(props) => <Profile user={user} />} />  */}
-        
-        {/* <Route exact path ='/trips' render={(props) => <TripContainer trip={trip} />} />  */}
+        <Route exact path="/trips/mytrips/:id" render={(props) => <Raincheck user={this.state.user} {...props}/>}/>
         <Route exact path ='/trips/new' render={() => <NewTrip liftToken={this.liftToken} token={this.state.token}/>} /> 
         <Route exact path ='/trips/:id' /> {/*  match.params of trip id -AdamG   */}
         <Route exact path ='/trips/:id/edit'  
                 render={() => <EditTrip liftToken={this.liftToken} token={this.state.token}/>}   /> 
 
-        {/* Route to each page here or in the TripContainer Component? */}
 
+        {/* <Route exact path='/issues' render={(props) => <Issues issues={issueCopy} />}/> 
+        <Route exact path='/issues/:id' render={(props) => <IssueShow issues={issueCopy} {...props} />} />  */}
 
-          {/* We will pass the geocode function inside new trip so user can input zipcode 
-            startLat
-            startLong:
-            destLat: 
-            destLong:
-            startTime: 
-            travelTime:
-            returnTime: 
-            returnTravelTime */}
-          {/* <Route
-            exact
-            path="/trips/new"
-            render={() => (
-              <NewTrip trip={this.state.trip} />
-            )}
-          /> */}
         </Router>
 
         <Footer />

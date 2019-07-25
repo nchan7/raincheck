@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class NewTrip extends React.Component {
     constructor(props) {
@@ -79,7 +80,7 @@ class NewTrip extends React.Component {
             // Here, take the data you just got and put it in state.
             // Then you can pass it down as props to be rendered.
             // Use react router redirection a la Mike
-            
+
 
         }).catch(err => {
             this.setState({
@@ -134,7 +135,10 @@ class NewTrip extends React.Component {
                     type="number"
                     name="returnTravelTime"
                     placeholder="Enter your estimated travel time..." /><br />
-                <input className="button" type="submit" value="Save Trip!" />
+                <Link to={`/trips/mytrips/`}> {' '}
+                    <input className="button" type="submit" value="Save Trip!" />
+                </Link>
+
             </form>
             </div>
             </>

@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 
 
 // let weatherUrl = 'https://api.darksky.net/forecast/' + process.env.DARK_SKY_API + '/' + trail.latitude + ',' + trail.longitude;
@@ -10,6 +12,10 @@ import React from 'react';
 
 
 const Raincheck = (props) => {
+    let trip = props.user.trips.find((trip) => {
+        return trip._id === props.match.params.id
+    })
+    
     return (
         <>
             {/* render the user start time plus and minus the travel time to get the weather data through out the trip
@@ -20,20 +26,20 @@ const Raincheck = (props) => {
             * What To Render on this Page = "StartTime-TravelTime" State & "ReturnTime-ReturnTravelTime" State & apiData- tripName */}
 
 
-            <h1 className="App"> Morning weather route: {props.user.trips[0].tripName}</h1>
+            <h1 className="App"> Morning weather route: {trip.tripName}</h1>
 
             <div className="Flex">
 
                 <div className="Starttime">
-                    <h2>Start Time: {props.user.trips[0].startTime}</h2>
-                    <h2> Travel Time: {props.user.trips[0].travelTime}</h2>
+                    <h2>Start Time: {trip.startTime}</h2>
+                    <h2> Travel Time: {trip.travelTime}</h2>
                     <h3>weather data goes here!</h3>
                 </div>
 
 
                 <div className="Traveltime">
-                    <h2>Return Time: {props.user.trips[0].returnTime}</h2>
-                    <h2> Return Travel Time: {props.user.trips[0].returnTravelTime}</h2>
+                    <h2>Return Time: {trip.returnTime}</h2>
+                    <h2> Return Travel Time: {trip.returnTravelTime}</h2>
                     <h3>weather data goes here!</h3>
 
                 </div>
@@ -41,27 +47,29 @@ const Raincheck = (props) => {
             </div>
 
 
-            <h1 className="App"> Evening weather route: {props.user.trips[0].tripName}</h1>
+            <h1 className="App"> Evening weather route: {trip.tripName}</h1>
 
             <div className="Flextwo">
 
                 <div className="Returntime">
-                    <h2>Start Time: {props.user.trips[0].startTime}</h2>
-                    <h2> Travel Time: {props.user.trips[0].travelTime}</h2>
+                    <h2>Start Time: {trip.startTime}</h2>
+                    <h2> Travel Time: {trip.travelTime}</h2>
                     <h3>weather data goes here!</h3>
                 </div>
 
 
                 <div className="ReturnTravel">
 
-                    <h2>Return Time: {props.user.trips[0].returnTime}</h2>
-                    <h2> Return Travel Time: {props.user.trips[0].returnTravelTime}</h2>
+                    <h2>Return Time: {trip.returnTime}</h2>
+                    <h2> Return Travel Time: {trip.returnTravelTime}</h2>
                     <h3>weather data goes here!</h3>
 
                 </div>
 
             </div>
-            <button className="button">My Back Trip</button>
+            <Link to={`/trips/mytrips`}> {' '}
+                <button className="button">My Back Trip</button>
+            </Link>
 
 
         </>
