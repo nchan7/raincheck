@@ -127,13 +127,20 @@ router.put('/:id', (req, res) => {
 
 // DELETE trip for a user
 router.delete('/:id', (req, res) => {
-    User.findById(req.user, function(err, user) {
+    console.log(err)
+    // ??? checking: req.user should be req.user._id
+    User.findById(req.user._id, function(err, user) {
         Trips.findOneAndRemove({
             _id: req.params.id
         },
         function(err) {
-            if (err) res.json(err);
-            res.json({type: 'success', message: 'You deleted one trip'})
+            // todo after delete trip, pull the trip id from the user as well
+            user.trips.pull(req.params.id);
+            user.save(function(err, user) {
+                if (err) res.json(err);
+                res.json({type: 'success', message: 'You deleted one trip', user})
+                
+            })
         })
     })
 })
