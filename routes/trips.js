@@ -149,7 +149,7 @@ router.put('/:id', (req, res) => {
 // DELETE trip for a user
 router.delete('/:id', (req, res) => {
     User.findById(req.user._id, function(err, user) {
-        Trips.findOneAndRemove({
+        Trip.findOneAndRemove({
             _id: req.params.id
         },
         function(err) {

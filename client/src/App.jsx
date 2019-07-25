@@ -30,7 +30,11 @@ class App extends React.Component {
     this.liftToken = this.liftToken.bind(this)
     this.logout = this.logout.bind(this)
     // this.testRoute = this.testRoute.bind(this)
+
+    this.deleteTrips = this.deleteTrips.bind(this)
+
     // this.getUsersTrips = this.getUsersTrips.bind(this)
+
   }
 
   checkForLocalToken() {
@@ -116,14 +120,14 @@ class App extends React.Component {
 
 
   deleteTrips(tripId) {
-    // console.log('the delete function starts and the token is ', this.state.token)
-    // let config = {
-    //   headers: {
-    //     Authorization: `Bearer ${this.state.token}`
-    //   }
-    // }
+    console.log('the delete function starts and the token is ', this.state.token)
+    let config = {
+      headers: {
+        Authorization: `Bearer ${this.state.token}`
+      }
+    }
     console.log('token passed')
-    axios.delete(`/trips/${tripId}`)
+    axios.delete(`/trips/${tripId}`,config)
       .then(res => {
         this.setState({
           user: res.data.user
