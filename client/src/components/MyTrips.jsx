@@ -16,6 +16,7 @@ const MyTrips = props => {
       )
     })
   } else {
+  
     trips = <h4>Create a New Trip!</h4>
   }
   

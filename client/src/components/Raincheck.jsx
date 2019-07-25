@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 
 
 // let weatherUrl = 'https://api.darksky.net/forecast/' + process.env.DARK_SKY_API + '/' + trail.latitude + ',' + trail.longitude;
@@ -65,7 +67,9 @@ const Raincheck = (props) => {
                 </div>
 
             </div>
-            <button className="button">My Back Trip</button>
+            <Link to={`/trips/mytrips`}> {' '}
+                <button className="button">My Back Trip</button>
+            </Link>
 
 
         </>
