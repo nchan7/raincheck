@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router(); 
 const mongoose = require('mongoose');
+const axios = require('axios');
 
 const Trip = require('../models/trip')
 const User = require('../models/user')
@@ -20,10 +21,11 @@ router.get('/', (req, res) => {
 
 // GET ONE trip for a user
 router.get('/:id', (req, res) => {
-    Trip.findById(req.params.id).then( (err,trip) => {
+    Trip.findById(req.params.id, (err,trip) => {
         if (err) res.json(err)
         // res.json(trip)
         console.log(trip)
+        console.log(req.params.id)
         let weatherUrl = `https://api.darksky.net/forecast/${process.env.DARK_SKY_API}/${trip.latStart},${trip.longStart}`
         console.log('Almost at the axios call')
         axios.get(weatherUrl).then(results => {
