@@ -71,6 +71,10 @@ const Raincheck = (props) => {
                 <button className="button">My Back Trip</button>
             </Link>
 
+            <Link to={`/trips/${props.match.params.id}/edit`}> {' '}
+                <button className="button">Edit this trip</button>
+            </Link>
+
 
         </>
     )

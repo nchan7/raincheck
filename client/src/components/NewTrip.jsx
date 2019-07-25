@@ -77,9 +77,13 @@ class NewTrip extends React.Component {
             returnTime: this.state.returnTime,
             returnTravelTime: this.state.returnTravelTime
         }, config).then(res => {
+            this.props.liftUser(res.data)
+
             // Here, take the data you just got and put it in state.
             // Then you can pass it down as props to be rendered.
             // Use react router redirection a la Mike
+            console.log("new trip complete")
+            console.log("this is the new user, i hope:", res.data);
 
 
         }).catch(err => {
@@ -135,9 +139,9 @@ class NewTrip extends React.Component {
                     type="number"
                     name="returnTravelTime"
                     placeholder="Enter your estimated travel time..." /><br />
-                <Link to={`/trips/mytrips/`}> {' '}
+                {/* <Link to={`/trips`}> {' '} */}
                     <input className="button" type="submit" value="Save Trip!" />
-                </Link>
+                {/* </Link> */}
 
             </form>
             </div>

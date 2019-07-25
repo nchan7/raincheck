@@ -29,7 +29,7 @@ class App extends React.Component {
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
     this.liftToken = this.liftToken.bind(this)
     this.logout = this.logout.bind(this)
-    this.testRoute = this.testRoute.bind(this)
+    // this.testRoute = this.testRoute.bind(this)
     this.getUsersTrips = this.getUsersTrips.bind(this)
   }
 
@@ -74,6 +74,12 @@ class App extends React.Component {
     })
   }
 
+  liftUser(user) {
+    this.setState({
+      user
+    })
+  }
+
   logout() {
     // Remove token from localStorage
     localStorage.removeItem('mernToken');
@@ -100,25 +106,25 @@ class App extends React.Component {
 
   componentDidMount() {
     this.checkForLocalToken()
-    // this.getUsersTrips()
+    this.getUsersTrips()
   }
 
 
   // The testRoute function was used to toubleshoot the api information
-  testRoute(e) {
-    e.preventDefault();
-    let config = {
-      headers: {
-        Authorization: `Bearer ${this.state.token}`
-      }
-    }
-    axios.get('/api', config).then(res => {
-      console.log("accessed the protected route");
-      this.setState({
-        apiData: res.data.message
-      })
-    })
-  }
+  // testRoute(e) {
+  //   e.preventDefault();
+  //   let config = {
+  //     headers: {
+  //       Authorization: `Bearer ${this.state.token}`
+  //     }
+  //   }
+  //   axios.get('/api', config).then(res => {
+  //     console.log("accessed the protected route");
+  //     this.setState({
+  //       apiData: res.data.message
+  //     })
+  //   })
+  // }
 
   render() {
     var user = this.state.user
@@ -151,7 +157,7 @@ class App extends React.Component {
           <Link to='/'>LocalHost3000000000</Link>{'  |  '} 
           <Link to='/trips/new'>New Trip</Link>{'  |  '} 
           {/* <Link to='/trips/:id'>Show Trip</Link>{'  |  '}  */}
-          <Link to='/trips/5d37903573e6e252c1c954f6/edit'>Edit Trip</Link>{'  |  '} 
+          <Link to='/trips/:id/edit'>Edit Trip</Link>{'  |  '} 
           <Link to='/trips/mytrips'>My Trips</Link>
         </nav>
           {/* <Route
@@ -162,7 +168,7 @@ class App extends React.Component {
 
         <Route exact path="/trips/mytrips" render={() => <MyTrips user={this.state.user} />}/>
         <Route exact path="/trips/mytrips/:id" render={(props) => <Raincheck user={this.state.user} {...props}/>}/>
-        <Route exact path ='/trips/new' render={() => <NewTrip liftToken={this.liftToken} token={this.state.token}/>} /> 
+        <Route exact path ='/trips/new' render={() => <NewTrip liftUser={this.liftUser} token={this.state.token}/>} /> 
         <Route exact path ='/trips/:id' /> {/*  match.params of trip id -AdamG   */}
         <Route exact path ='/trips/:id/edit'  
                 render={() => <EditTrip liftToken={this.liftToken} token={this.state.token}/>}   /> 
