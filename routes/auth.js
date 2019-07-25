@@ -72,14 +72,18 @@ router.post('/me/from/token', (req, res) => {
     } else {
         // if token, verify it
         jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+            console.log("VERIFYING TOKENNNNNNNNNNNNNNN$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
             if (err) {
                 // if token invalid, return error
+                console.log("error verifying")
                 res.json({type: 'error', message: 'Invalid token. Please login again.'})
             } else {
                 // if token is valid, look up user in the db
+                console.log("token is valid")
                 User.findById(user._id).populate('trips').exec((err, user) => {
                     // if user doesn't exist, return error
                     if (err) {
+                        console.log("database error")
                         res.json({type: 'error', message: 'Database error during validation'})
                     } else {
                         // if user does exist, send back user and token
@@ -88,6 +92,7 @@ router.post('/me/from/token', (req, res) => {
                         //* var token = jwt.sign(user.toObject(), process.env.JWT_SECRET, {
                         //*     expiresIn: '1d'
                         //* })
+                        console.log("What is this user?", user);
                         
                         res.json({type: 'success', user: user.toObject(), token})
                     }

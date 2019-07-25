@@ -9,10 +9,10 @@ const MyTrips = props => {
   if (props.user.trips) {
     trips = props.user.trips.map((trip, i) => {
       return (
-        
-        <div className="mytrips" key={i}>
+        <div key={i} className="mytrips">
+
           <Link to={`/trips/mytrips/${trip._id}`}> {' '}
-              <h4 key={i}>{trip.tripName}</h4>
+              <h4>{trip.tripName}</h4>
           </Link>
           <button onClick={props.deleteTrips(trip._id)}>Delete</button>
         </div>
@@ -22,26 +22,15 @@ const MyTrips = props => {
   
     trips = <h4>Create a New Trip!</h4>
   }
-  
-  
-  
+   
   return (
       <>
         <div>
           {trips} 
-          {/* Why is this not showing up */}
         </div>
-      {/* // Returns a list of trips 
-        * // We will render the "nameTrip state"
-        
-      */}
-      
       </>
   )
 }
-
-
-
 
 export default MyTrips;
 
