@@ -98,3 +98,7 @@
     transform: rotate(360deg);
   }
 }
+
+.mytrips {
+  border: 1px solid black
+}
