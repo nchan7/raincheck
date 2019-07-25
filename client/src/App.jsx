@@ -66,6 +66,13 @@ class App extends React.Component {
     }
   }
 
+  // liftToken(data) {
+  //   this.setState({
+  //     token: data.token,
+  //     user: data.user
+  //   })
+  // }
+
   //* Object Destructuring! 
   liftToken({ token, user }) {
     this.setState({
@@ -161,7 +168,7 @@ class App extends React.Component {
           /> */}
 
         <Route exact path="/trips/mytrips" render={() => <MyTrips user={this.state.user} />}/>
-        <Route exact path="/trips/mytrips/:id" render={(props) => <Raincheck user={this.state.user} {...props}/>}/>
+        <Route exact path="/trips/mytrips/:id" render={(props) => <Raincheck user={this.state.user} token={this.state.token} {...props}/>}/>
         <Route exact path ='/trips/new' render={() => <NewTrip liftToken={this.liftToken} token={this.state.token}/>} /> 
         <Route exact path ='/trips/:id' /> {/*  match.params of trip id -AdamG   */}
         <Route exact path ='/trips/:id/edit'  
