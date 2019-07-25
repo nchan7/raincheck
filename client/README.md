@@ -1,3 +1,54 @@
+# Raincheck
+## Fuad Abdella, Nathan Chan, Adam Grunke | July 26, 2019
+### General Assembly - Software Engineering Immersive Project 3: HTML, CSS/Bootstrap, Javascript, Node.js, React.js, MongoDB, Mongoose
+#### Check out a demo of the site here: 
+
+# Introduction
+Have you ever needed to know what the weather is like at the origin and destination of your route? You have come to the right place. Use Raincheck to save your trips and check the weather at the start and end of each trip. Based on that you'll be able to determine what mode of travel is best or what you might need to wear to take on the day. 
+
+## Project Requirements
+This is the third of four projects that will be incorporated as part of the General Assembly Software Engineering Immersive. The goal is to combined all that we have learned in Units 1, 2, and 3 (HTML, CSS, Javasript, Node.js, Express.js, React.js, MongoDB, Mongoose, and Authentication) into a full-stack web application that we can publish for the public. This project requires us to work in a team of three or four developers which also allows us to employ... 
+
+
+
+## Technical Requirements
+The technical requirements of this project are as follows:
+* Build a full-stack application by making your own backend and your own front-end
+* Note that if you build an app using Ionic, a backend is optional. However, look into services such as      Firebase if you'd like a service for storing data.
+* Have an interactive front-end, preferably using a modern front-end framework
+* Be a complete product, which most likely means multiple relationships and CRUD functionality for at least a couple models. However, this is ultimately up to your discretion.
+* Use a database, whether that's one we've covered in class or one you want to learn
+* Implement thoughtful user stories that are significant enough to help you know which features to build and which to scrap
+* Have a visually impressive design to kick your portfolio up a notch and have something to wow future clients & employers
+* Be deployed online so it's publicly accessible
+
+
+
+# NPM and APIs
+
+Run npm install to install all of the dependencies
+
+
+## Pulling from APIs
+
+This project combines three APIs with an option to incorporate additional ones: 
+1. Dark Sky API - https://darksky.net/dev/docs#overview
+2. Mapbox API - https://docs.mapbox.com/api/search/
+
+Images of the API sites
+
+### Dark Sky API:
+
+<img src="./public/img/DarkSky.png" height = 200px width = 400px>
+
+
+### Mapbox API:
+
+<img src="./public/img/Mapbox.png" height = 200px width = 400px>
+
+
+## The Following was provided by the node module create-react-app. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
