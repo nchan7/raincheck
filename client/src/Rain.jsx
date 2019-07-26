@@ -5,8 +5,9 @@ export class Rain extends Component {
     render() {
         return (
             <>
-                <h1>hello</h1>
-                <ReactRain numDrops="50" />
+                <h1>Raincheck
+                </h1>
+                <ReactRain numDrops="1" />
 
             </>
         );

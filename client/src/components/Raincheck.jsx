@@ -22,7 +22,7 @@ class Raincheck extends React.Component {
     }
 
     getWeatherData() {
-        console.log('Yay! Component did mount')
+        // console.log('Yay! Component did mount')
         let trip = this.props.user.trips.find((trip) => {
             return trip._id === this.props.match.params.id
         })
@@ -31,11 +31,11 @@ class Raincheck extends React.Component {
                 Authorization: `Bearer ${this.props.token}`
             }
         }
-        console.log('Just before axios call on the front end', trip._id)
+        // console.log('Just before axios call on the front end', trip._id)
         let url = `/trips/${trip._id}`
         console.log(url)
         axios.get(url, config).then(results => {
-            console.log('After axios call', results.data)
+            // console.log('After axios call', results.data)
             this.setState({
                 currentTemp: results.data.weather.currently.temperature,
                 hourly: results.data.weather.hourly.data[0].temperature,
