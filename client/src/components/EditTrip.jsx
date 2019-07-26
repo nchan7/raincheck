@@ -77,8 +77,13 @@ class EditTrip extends React.Component {
             returnTime: this.state.returnTime,
             returnTravelTime: this.state.returnTravelTime
         }, config).then(res => {
-            localStorage.setItem('mernToken', res.data.token)
-            this.props.liftToken(res.data)        
+            // localStorage.setItem('mernToken', res.data.token)
+            // this.props.liftToken(res.data)  
+            
+            // TODO axios GET and then populate before  liftUser
+            this.props.liftUser(res.data)     
+        }).then(()=> {
+            this.props.history.push('/trips/mytrips')
         }).catch(err => {
             this.setState({
                 message: "Trip not saved. Try again.",
