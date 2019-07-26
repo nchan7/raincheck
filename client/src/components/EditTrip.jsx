@@ -22,7 +22,7 @@ class EditTrip extends React.Component {
         this.handleReturnTimeChange = this.handleReturnTimeChange.bind(this)
         this.handleReturnTravelTimeChange = this.handleReturnTravelTimeChange.bind(this)
         this.handleEditTripSubmit = this.handleEditTripSubmit.bind(this)
-        // this.populatePlaceholderValues = this.populatePlaceholderValues.bind(this)
+        this.populatePlaceholderValues = this.populatePlaceholderValues.bind(this)
     }
 
     // Functions to handle the EditTrip Form submissions
@@ -77,11 +77,6 @@ class EditTrip extends React.Component {
             returnTime: this.state.returnTime,
             returnTravelTime: this.state.returnTravelTime
         }, config).then(res => {
-            // localStorage.setItem('mernToken', res.data.token)
-            // this.props.liftToken(res.data)  
-
-            // TODO axios GET and then populate before  liftUser
-            // axios.get('/trips', {}, config).then( res => {})
             axios.get("/trips", config)
                 .then(res => {
                     let trips = res.data
@@ -89,8 +84,7 @@ class EditTrip extends React.Component {
                     user.trips = trips
                     this.props.liftUser(user)
                 })
-
-        }).then(() => {
+        }).then(()=> {
             this.props.history.push('/trips/mytrips')
         }).catch(err => {
             this.setState({
@@ -98,38 +92,36 @@ class EditTrip extends React.Component {
                 err: err
             })
         })
-        // this.props.liftUser(res.data)     
     }
 
-    // populatePlaceholderValues() {
-    //     // console.log("populate placeholder values test tESt TEST!")
+    populatePlaceholderValues() {        
+        let config = {
+            headers: {
+                Authorization: `Bearer ${this.props.token}`
+            }
+        }
+        axios.get(`/trips/${this.props.match.params.id}`, config).then(res => {
+            console.log(res.data)
+            this.setState({
+                tripName: res.data.trip.tripName,
+                zipStart: res.data.trip.zipStart, 
+                startTime: res.data.trip.startTime,
+                travelTime: res.data.trip.travelTime,
+                zipDest: res.data.trip.zipDest,
+                returnTime: res.data.trip.returnTime,
+                returnTravelTime: res.data.trip.returnTravelTime
+            })
 
-    //     let config = {
-    //         headers: {
-    //             Authorization: `Bearer ${this.props.token}`
-    //         }
-    //     }
-    //     axios.get(`/trips/${'5d37903573e6e252c1c954f6'}`, {
-    //         tripName: this.state.tripName,
-    //         zipStart: this.state.zipStart, 
-    //         startTime: this.state.startTime,
-    //         travelTime: this.state.travelTime,
-    //         zipDest: this.state.zipDest,
-    //         returnTime: this.state.returnTime,
-    //         returnTravelTime: this.state.returnTravelTime
-    //     }, config).then(res => {
-    //         localStorage.setItem('mernToken', res.data.token)
-    //         this.props.liftToken(res.data)        
-    //     }).catch(err => {
-    //         this.setState({
-    //             message: "Data not aquired from db.",
-    //             err: err
-    //         })
-    //     })
-    // }
-
+        }).catch(err => {
+            this.setState({
+                message: "Data not aquired from db.",
+                err: err
+            })
+        })
+    }
+    
     componentDidMount() {
-        // this.populatePlaceholderValues()
+        this.populatePlaceholderValues()
     }
 
     render() {

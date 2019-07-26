@@ -38,6 +38,8 @@ class Signup extends React.Component {
                 localStorage.setItem('mernToken', res.data.token)
                 this.props.liftToken(res.data)
             }
+        }).then(()=> {
+            this.props.history.push('/trips/new')
         }).catch(err => {
             this.setState({
                 message: 'Maximum accounts exceeded. Please try again later.'

@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import axios from 'axios';
+import React from 'react'
+// import axios from 'axios';
 import { Link } from 'react-router-dom'
 
 const MyTrips = props => {
   let trips;
   // console.log(props.user)
   // console.log(props.token)
-  if (props.user.trips) {
+  if (props.user.trips.length) {
     trips = props.user.trips.map((trip, i) => {
       return (
         <div className="Tripflex">
