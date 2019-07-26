@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+// import withRouter from 'react-router-dom';
 
 class NewTrip extends React.Component {
     constructor(props) {
@@ -62,7 +63,7 @@ class NewTrip extends React.Component {
 
     handleNewTripSubmit(e) {
         e.preventDefault()
-        console.log(this.props.token)
+        // console.log(this.props.token)
         let config = {
             headers: {
                 Authorization: `Bearer ${this.props.token}`
@@ -77,15 +78,21 @@ class NewTrip extends React.Component {
             returnTime: this.state.returnTime,
             returnTravelTime: this.state.returnTravelTime
         }, config).then(res => {
-            this.props.liftUser(res.data)
-
-            // Here, take the data you just got and put it in state.
-            // Then you can pass it down as props to be rendered.
-            // Use react router redirection a la Mike
-            console.log("new trip complete")
-            console.log("this is the new user, i hope:", res.data);
+            // console.log('this is the res.data ', res.data)
+        
 
 
+
+        axios.get("/trips", config)
+            .then(res => {
+                let trips = res.data
+                let user = Object.assign(this.props.user)
+                user.trips = trips
+                this.props.liftUser(user)
+            })
+
+        }).then(()=> {
+            this.props.history.push('/trips/mytrips')
         }).catch(err => {
             this.setState({
                 message: "Trip not saved. Try again.",
@@ -139,9 +146,7 @@ class NewTrip extends React.Component {
                     type="number"
                     name="returnTravelTime"
                     placeholder="Enter your estimated travel time..." /><br />
-                {/* <Link to={`/trips`}> {' '} */}
                     <input className="button" type="submit" value="Save Trip!" />
-                {/* </Link> */}
 
             </form>
             </div>

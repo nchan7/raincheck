@@ -30,6 +30,7 @@ class App extends React.Component {
     }
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
     this.liftToken = this.liftToken.bind(this)
+    this.liftUser = this.liftUser.bind(this)
     this.logout = this.logout.bind(this)
     // this.testRoute = this.testRoute.bind(this)
 
@@ -81,6 +82,7 @@ class App extends React.Component {
 
   //* Object Destructuring! 
   liftToken({ token, user }) {
+    console.log("we are now in the liftToken function!!!!!!!2")
     this.setState({
       token,
       user
@@ -88,6 +90,7 @@ class App extends React.Component {
   }
 
   liftUser(user) {
+    // console.log("we are now in the liftUser function!!!!!!!2")
     this.setState({
       user
     })
@@ -96,6 +99,7 @@ class App extends React.Component {
   logout() {
     // Remove token from localStorage
     localStorage.removeItem('mernToken');
+
     // Remove user and token from state
     this.setState({
       token: '',
@@ -167,10 +171,10 @@ class App extends React.Component {
     if (user) {
       contents = (
         <>
-          <p>Hello, {user.name}</p>
-          <p onClick={this.logout}>Logout!</p>
-          <p onClick={this.testRoute}>Access protected route</p>
-          <p>{this.state.apiData}</p>
+          {/* <p>Hello, {user.name}</p> */}
+            <Link to='/' onClick={this.logout}>Logout!</Link>
+          {/* <p onClick={this.testRoute}></p> */}
+          {/* <p>{this.state.apiData}</p> */}
         </>
       );
     } else {
@@ -188,16 +192,16 @@ class App extends React.Component {
       <>
 
         <Rain />
+        <Router>
         {contents}
         <Header />
-        <Router>
-          <nav>
-            <Link to='/'>LocalHost3000000000</Link>{'  |  '}
-            <Link to='/trips/new'>New Trip</Link>{'  |  '}
-            {/* <Link to='/trips/:id'>Show Trip</Link>{'  |  '}  */}
-            {/* <Link to='/trips/:id/edit'>Edit Trip</Link>{'  |  '}  */}
-            <Link to='/trips/mytrips'>My Trips</Link>
-          </nav>
+        <nav>
+          <Link to='/'>LocalHost3000000000</Link>{'  |  '} 
+          <Link to='/trips/new'>New Trip</Link>{'  |  '} 
+          {/* <Link to='/trips/:id'>Show Trip</Link>{'  |  '}  */}
+          {/* <Link to='/trips/:id/edit'>Edit Trip</Link>{'  |  '}  */}
+          <Link to='/trips/mytrips'>My Trips</Link>
+        </nav>
           {/* <Route
             exact
             path="/raincheck"
@@ -205,17 +209,19 @@ class App extends React.Component {
           /> */}
 
 
-          <Route exact path="/trips/mytrips" render={(props) => <MyTrips user={this.state.user} deleteTrips={this.deleteTrips} token={this.state.token} {...props} />} />
-          <Route exact path="/trips/mytrips/:id" render={(props) => <Raincheck user={this.state.user} token={this.state.token} {...props} />} />
-          <Route exact path='/trips/new' render={() => <NewTrip liftUser={this.liftUser} token={this.state.token} />} />
-          <Route exact path='/trips/:id' /> {/*  match.params of trip id -AdamG   */}
-          <Route exact path='/trips/:id/edit'
-            render={(props) => <EditTrip
-              liftToken={this.liftToken}
-              user={this.state.user}
-              token={this.state.token}
-              {...props} />
-            } />
+
+        <Route exact path="/trips/mytrips" render={(props) => <MyTrips user={this.state.user} deleteTrips={this.deleteTrips} token={this.state.token} {...props}/>} />
+        <Route exact path="/trips/mytrips/:id" render={(props) => <Raincheck user={this.state.user} token={this.state.token} {...props}/>}/>
+        <Route exact path ='/trips/new' render={(props) => <NewTrip user={this.state.user} liftUser={this.liftUser} token={this.state.token} {...props} />} /> 
+        <Route exact path ='/trips/:id' /> {/*  match.params of trip id -AdamG   */}
+        <Route exact path ='/trips/:id/edit'  
+                render={(props) => <EditTrip 
+                                      liftUser={this.liftUser}
+                                      // liftToken={this.liftToken} 
+                                      user={this.state.user} 
+                                      token={this.state.token} 
+                                      {...props}/>
+                        }   /> 
 
           {/* <Route exact path='/issues' render={(props) => <Issues issues={issueCopy} />}/> 
         <Route exact path='/issues/:id' render={(props) => <IssueShow issues={issueCopy} {...props} />} />  */}
