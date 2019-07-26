@@ -9,12 +9,13 @@ const MyTrips = props => {
   if (props.user.trips.length) {
     trips = props.user.trips.map((trip, i) => {
       return (
-        <div key={i} className="mytrips">
-
-          <Link to={`/trips/mytrips/${trip._id}`}> {' '}
-            <h4>{trip.tripName}</h4>
-          </Link>
-          <button key={i} onClick={() => props.deleteTrips(trip._id)}>Delete</button>
+        <div className="Tripflex">
+            <div key={i} className="mytrips">
+            <Link to={`/trips/mytrips/${trip._id}`}> {' '}
+              <h4 className="Tripname">{trip.tripName}</h4>
+            </Link>
+            <button key={i} onClick={() => props.deleteTrips(trip._id)}>Delete</button>
+          </div>
         </div>
       )
     })

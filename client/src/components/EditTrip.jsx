@@ -70,7 +70,7 @@ class EditTrip extends React.Component {
         }
         axios.put(`/trips/${this.props.match.params.id}`, {
             tripName: this.state.tripName,
-            zipStart: this.state.zipStart, 
+            zipStart: this.state.zipStart,
             startTime: this.state.startTime,
             travelTime: this.state.travelTime,
             zipDest: this.state.zipDest,
@@ -123,56 +123,56 @@ class EditTrip extends React.Component {
     componentDidMount() {
         this.populatePlaceholderValues()
     }
-    
+
     render() {
         return (
             <>
-      {/* // Let's return the form that allows people to save a trip. Below is sample code*/}
-            <div className="">
-            <h3>Edit a Trip</h3>
-            <form onSubmit={this.handleEditTripSubmit}>
-                <input onChange={this.handleTripNameChange}
-                    value={this.state.tripName}
-                    type="text"
-                    name="tripName"
-                    placeholder="Trip title..." /><br />
-                <input onChange={this.handleZipStartChange}
-                    value={this.state.zipStart}
-                    type="number"
-                    name="zipStart"
-                    placeholder="Enter your origin zipcode" /><br />
-                
-                <input onChange={this.handleStartTimeChange}
-                    value={this.state.startTime}
-                    type="datetime-local"
-                    name="startTime"
-                    placeholder="Enter your departure time" /><br />
-                
-                <input onChange={this.handleTravelTimeChange}
-                    value={this.state.travelTime}
-                    type="number"
-                    name="travelTime"
-                    placeholder="Enter your estimated travel time..." /><br />
-                <input onChange={this.handleZipDestChange}
-                    value={this.state.zipDest}
-                    type="number"
-                    name="zipDest"
-                    placeholder="Enter your destination zipcode" /><br />
-                
-                <input onChange={this.handleReturnTimeChange}
-                    value={this.state.returnTime}
-                    type="datetime-local"
-                    name="returnTime"
-                    placeholder="Enter your return trip start time" /><br />
-                
-                <input onChange={this.handleReturnTravelTimeChange}
-                    value={this.state.returnTravelTime}
-                    type="number"
-                    name="returnTravelTime"
-                    placeholder="Enter your estimated travel time..." /><br />
-                <input type="submit" value="Save Trip!" />
-            </form>
-            </div>
+                {/* // Let's return the form that allows people to save a trip. Below is sample code*/}
+                <div className="">
+                    <h3>Edit a Trip</h3>
+                    <form onSubmit={this.handleEditTripSubmit}>
+                        Trip Name: <input className="textbox" onChange={this.handleTripNameChange}
+                            value={this.state.tripName}
+                            type="text"
+                            name="tripName"
+                            placeholder="Trip title..." /><br />
+                        Origin ZipCode: <input className="textbox" onChange={this.handleZipStartChange}
+                            value={this.state.zipStart}
+                            type="number"
+                            name="zipStart"
+                            placeholder="Enter your origin zipcode" /><br />
+
+                        Start Time:<input className="textbox" onChange={this.handleStartTimeChange}
+                            value={this.state.startTime}
+                            type="datetime-local"
+                            name="startTime"
+                            placeholder="Enter your departure time" /><br />
+
+                        Travel Time: <input className="textbox" onChange={this.handleTravelTimeChange}
+                            value={this.state.travelTime}
+                            type="number"
+                            name="travelTime"
+                            placeholder="Enter your estimated travel time..." /><br />
+                        Destination ZipCode <input className="textbox" onChange={this.handleZipDestChange}
+                            value={this.state.zipDest}
+                            type="number"
+                            name="zipDest"
+                            placeholder="Enter your destination zipcode" /><br />
+
+                        Return Time  <input className="textbox" onChange={this.handleReturnTimeChange}
+                            value={this.state.returnTime}
+                            type="datetime-local"
+                            name="returnTime"
+                            placeholder="Enter your return trip start time" /><br />
+
+                        Return Travel Time<input className="textbox" onChange={this.handleReturnTravelTimeChange}
+                            value={this.state.returnTravelTime}
+                            type="number"
+                            name="returnTravelTime"
+                            placeholder="Enter your estimated travel time..." /><br />
+                        <input className="button" type="submit" value="Save Trip!" />
+                    </form>
+                </div>
             </>
         )
     }
