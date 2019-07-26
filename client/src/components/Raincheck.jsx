@@ -59,8 +59,8 @@ class Raincheck extends React.Component {
             var hourlyTime = results.data.weather.hourly.data.map(data => data.time);
             var hourlyTemp = results.data.weather.hourly.data.map(data => data.temperature);
             var hourlyPrecip = results.data.weather.hourly.data.map(data => data.precipProbability);
-            
-            
+
+
 
             this.setState({
                 currentTemp: results.data.weather.currently.temperature,
@@ -68,7 +68,7 @@ class Raincheck extends React.Component {
                 hourlyTime: hourlyTime,
                 hourlyTemp: hourlyTemp,
                 hourlyPrecip: hourlyPrecip
-                
+
             })
         }).catch(err => {
             console.log(err)
@@ -86,7 +86,7 @@ class Raincheck extends React.Component {
 
         let trip = this.props.user.trips.find((trip) => {
             return trip._id === this.props.match.params.id
-        
+
             // Life cycle 
             // Set the state to what we want
             // Or do some functions here before the return
@@ -94,7 +94,7 @@ class Raincheck extends React.Component {
         })
         // let travelTimeHours = Math.floor(trip.travelTime/60)
         // let travelTimeMinutes = trip.travelTime % 60;
-        
+
         // let currentTime = moment(this.state.currentTime).format('LT');
         // let timeDifference = moment.duration((this.state.startTime).diff).asHours();
         // console.log(timeDifference)
@@ -102,8 +102,8 @@ class Raincheck extends React.Component {
         // console.log(time)
 
         // console.log(currentTime)
-        
- 
+
+
         return (
             <>
                 {/* render the user start time plus and minus the travel time to get the weather data through out the trip
@@ -149,7 +149,7 @@ class Raincheck extends React.Component {
 
                 <div className="Flextwo">
 
-               
+
 
 
                     <div className="Returntime">
@@ -180,6 +180,7 @@ class Raincheck extends React.Component {
                 <Link to={`/trips/${this.props.match.params.id}/edit`}> {' '}
                     <button className="button">Edit this trip</button>
                 </Link>
+
 
 
             </>

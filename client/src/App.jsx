@@ -196,7 +196,7 @@ class App extends React.Component {
         {contents}
         <Header />
         <nav>
-          <Link to='/'>LocalHost3000000000</Link>{'  |  '} 
+          <Link to='/'>Home</Link>{'  |  '} 
           <Link to='/trips/new'>New Trip</Link>{'  |  '} 
           {/* <Link to='/trips/:id'>Show Trip</Link>{'  |  '}  */}
           {/* <Link to='/trips/:id/edit'>Edit Trip</Link>{'  |  '}  */}
