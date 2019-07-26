@@ -79,7 +79,18 @@ class NewTrip extends React.Component {
             returnTravelTime: this.state.returnTravelTime
         }, config).then(res => {
             // console.log('this is the res.data ', res.data)
-            this.props.liftUser(res.data)
+        
+
+
+
+        axios.get("/trips", config)
+            .then(res => {
+                let trips = res.data
+                let user = Object.assign(this.props.user)
+                user.trips = trips
+                this.props.liftUser(user)
+            })
+
         }).then(()=> {
             this.props.history.push('/trips/mytrips')
         }).catch(err => {

@@ -55,11 +55,13 @@ class Raincheck extends React.Component {
         // console.log(url)
         axios.get(url, config).then(results => {
             // console.log('After axios call', results.data)
+
             var hourlyTime = results.data.weather.hourly.data.map(data => data.time);
             var hourlyTemp = results.data.weather.hourly.data.map(data => data.temperature);
             var hourlyPrecip = results.data.weather.hourly.data.map(data => data.precipProbability);
             
             
+
             this.setState({
                 currentTemp: results.data.weather.currently.temperature,
                 currentTime: results.data.weather.currently.time,

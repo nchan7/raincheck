@@ -97,7 +97,6 @@ class App extends React.Component {
 
   logout() {
     // Remove token from localStorage
-    this.props.history.push('/')
     localStorage.removeItem('mernToken');
 
     // Remove user and token from state
@@ -171,10 +170,10 @@ class App extends React.Component {
     if (user) {
       contents = (
         <>
-          <p>Hello, {user.name}</p>
-          <p onClick={this.logout}>Logout!</p>
-          <p onClick={this.testRoute}>Access protected route</p>
-          <p>{this.state.apiData}</p>
+          {/* <p>Hello, {user.name}</p> */}
+            <Link to='/' onClick={this.logout}>Logout!</Link>
+          {/* <p onClick={this.testRoute}></p> */}
+          {/* <p>{this.state.apiData}</p> */}
         </>
       );
     } else {
@@ -190,9 +189,9 @@ class App extends React.Component {
     return (
       <>
         <Rain />
+        <Router>
         {contents}
         <Header />
-        <Router>
         <nav>
           <Link to='/'>LocalHost3000000000</Link>{'  |  '} 
           <Link to='/trips/new'>New Trip</Link>{'  |  '} 
@@ -209,7 +208,7 @@ class App extends React.Component {
 
         <Route exact path="/trips/mytrips" render={(props) => <MyTrips user={this.state.user} deleteTrips={this.deleteTrips} token={this.state.token} {...props}/>} />
         <Route exact path="/trips/mytrips/:id" render={(props) => <Raincheck user={this.state.user} token={this.state.token} {...props}/>}/>
-        <Route exact path ='/trips/new' render={(props) => <NewTrip liftUser={this.liftUser} token={this.state.token} {...props} />} /> 
+        <Route exact path ='/trips/new' render={(props) => <NewTrip user={this.state.user} liftUser={this.liftUser} token={this.state.token} {...props} />} /> 
         <Route exact path ='/trips/:id' /> {/*  match.params of trip id -AdamG   */}
         <Route exact path ='/trips/:id/edit'  
                 render={(props) => <EditTrip 
