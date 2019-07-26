@@ -32,13 +32,13 @@
 
 .Flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 
 .Flextwo {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .Starttime {
@@ -113,4 +113,8 @@
 
 .mytrips {
   border: 1px solid black
+}
+
+.drop {
+  background-color: rgb(15, 98, 146);
 }

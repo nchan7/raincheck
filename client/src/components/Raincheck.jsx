@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Sourced code from https://medium.com/@maison.moa/create-a-simple-weather-app-using-node-js-express-and-react-54105094647a
 
@@ -28,7 +28,7 @@ class Raincheck extends React.Component {
         })
         let config = {
             headers: {
-              Authorization: `Bearer ${this.props.token}`
+                Authorization: `Bearer ${this.props.token}`
             }
         }
         console.log('Just before axios call on the front end', trip._id)
@@ -50,7 +50,7 @@ class Raincheck extends React.Component {
         this.getWeatherData()
     }
 
-    render () {
+    render() {
         let trip = this.props.user.trips.find((trip) => {
             return trip._id === this.props.match.params.id
         
@@ -59,10 +59,10 @@ class Raincheck extends React.Component {
             // Or do some functions here before the return
             // Make object an array and map the array    
         })
-        const startTime = trip.startTime.getTime()/1000;
+ //       const startTime = trip.startTime.getTime()/1000;
         return (
             <>
-            {/* render the user start time plus and minus the travel time to get the weather data through out the trip
+                {/* render the user start time plus and minus the travel time to get the weather data through out the trip
             so on this page we will need to show the total time length depending on the input and weather
     
             * 4 different divs
@@ -70,58 +70,62 @@ class Raincheck extends React.Component {
             * What To Render on this Page = "StartTime-TravelTime" State & "ReturnTime-ReturnTravelTime" State & apiData- tripName */}
 
 
-            <h1 className="App"> Morning weather route: {trip.tripName}</h1>
+                <h1 className="App"> Morning weather route: {trip.tripName}</h1>
 
-            <div className="Flex">
+                <div className="Flex">
 
-                <div className="Starttime">
-                    <h2>Start Time: {startTime}</h2>
-                    <h2>Travel Time: {trip.travelTime}</h2>
-                    <h3>weather data goes here!</h3><br/>
-                    <h3>Current Weather: {this.state.hourly}</h3>
-                </div>
-
-
-                <div className="Traveltime">
-                    <h2>Return Time: {trip.returnTime}</h2>
-                    <h2> Return Travel Time: {trip.returnTravelTime}</h2>
-                    <h3>weather data goes here!</h3>
-
-                </div>
-
-            </div>
+                    <div className="Starttime">
+                        <h2>Start Time: {trip.startTime}</h2>
+                        <h2> Travel Time: {trip.travelTime}</h2>
+                        <h3>weather data goes here!</h3><br />
+                        <h3>Current Weather: {this.state.currently}</h3>
+                    </div>
 
 
-            <h1 className="App"> Evening weather route: {trip.tripName}</h1>
 
-            <div className="Flextwo">
+                    <div className="Traveltime">
+                        <h2>Return Time: {trip.returnTime}</h2>
+                        <h2> Return Travel Time: {trip.returnTravelTime}</h2>
+                        <h3>weather data goes here!</h3>
 
-                <div className="Returntime">
-                    <h2>Start Time: {trip.returnTime}</h2>
-                    <h2> Travel Time: {trip.returnTravelTime}</h2>
-                    <h3>weather data goes here!</h3>
-                </div>
-
-
-                <div className="ReturnTravel">
-
-                    <h2>Return Time: {trip.returnTime}</h2>
-                    <h2> Return Travel Time: {trip.returnTravelTime}</h2>
-                    <h3>weather data goes here!</h3>
+                    </div>
 
                 </div>
 
-            </div>
-            <Link to={`/trips/mytrips`}> {' '}
-                <button className="button">My Back Trip</button>
-            </Link>
 
-            <Link to={`/trips/${this.props.match.params.id}/edit`}> {' '}
-                <button className="button">Edit this trip</button>
-            </Link>
+                <h1 className="App"> Evening weather route: {trip.tripName}</h1>
+
+                <div className="Flextwo">
+
+               
 
 
-        </>
+                    <div className="Returntime">
+                        <h2>Start Time: {trip.returnTime}</h2>
+                        <h2> Travel Time: {trip.returnTravelTime}</h2>
+                        <h3>weather data goes here!</h3>
+                    </div>
+
+
+                    <div className="ReturnTravel">
+
+                        <h2>Return Time: {trip.returnTime}</h2>
+                        <h2> Return Travel Time: {trip.returnTravelTime}</h2>
+                        <h3>weather data goes here!</h3>
+
+                    </div>
+
+                </div>
+                <Link to={`/trips/mytrips`}> {' '}
+                    <button className="button">My Back Trip</button>
+                </Link>
+
+                <Link to={`/trips/${this.props.match.params.id}/edit`}> {' '}
+                    <button className="button">Edit this trip</button>
+                </Link>
+
+
+            </>
         )
     }
 }
@@ -130,12 +134,12 @@ class Raincheck extends React.Component {
 //     let trip = props.user.trips.find((trip) => {
 //         return trip._id === props.match.params.id
 //     })
-    
+
 //     return (
 //         <>
 //             {/* render the user start time plus and minus the travel time to get the weather data through out the trip
 //             so on this page we will need to show the total time length depending on the input and weather
-    
+
 //             * 4 different divs
 
 //             * What To Render on this Page = "StartTime-TravelTime" State & "ReturnTime-ReturnTravelTime" State & apiData- tripName */}
