@@ -20,7 +20,9 @@ class Raincheck extends React.Component {
             hourlyTime: null,
             hourlyTemp: null,
             hourlyPrecip: null,
+            startTime: null,
             startTripEndTime: null,
+            returnTime: null,
             returnTripEndTime: null
         }
         this.getWeatherData = this.getWeatherData.bind(this)
@@ -36,7 +38,9 @@ class Raincheck extends React.Component {
         let returnTripEndTime = moment(trip.returnTime).add(trip.returnTravelTime, 'minutes');
         // console.log(returnTripEndTime)
         this.setState({
+            startTime: moment(trip.startTime),
             startTripEndTime,
+            returnTime: moment(trip.returnTime),
             returnTripEndTime
         })
 
@@ -67,11 +71,14 @@ class Raincheck extends React.Component {
         }).catch(err => {
             console.log(err)
         })
+        // let time = moment.unix(this.state.hourlyTime[0])
+        // console.log(time)
     }
 
     componentDidMount() {
         this.getWeatherData()
     }
+
 
     render() {
 
@@ -87,8 +94,10 @@ class Raincheck extends React.Component {
         // let travelTimeMinutes = trip.travelTime % 60;
         
         // let currentTime = moment(this.state.currentTime).format('LT');
-        // let timeDifference = moment(trip.startTime).format('LT') - moment(this.state.currentTime).format('LT');
-        
+        // let timeDifference = moment.duration((this.state.startTime).diff).asHours();
+        // console.log(timeDifference)
+        // let time = moment.unix(this.state.hourlyTime[0])
+        // console.log(time)
 
         // console.log(currentTime)
         
@@ -111,8 +120,12 @@ class Raincheck extends React.Component {
                     <div className="Starttime">
                         <h2>Start Time: {moment(trip.startTime).format('LT')}</h2>
                         {/* <h2>Travel Time: {moment(this.state.startTripEndTime).format('LT')}</h2> */}
-                        <h3>weather data goes here!</h3><br />
-                        <h3>Current Weather: {this.state.currentTemp}</h3>
+                        <h3>Temperature: {Math.round(this.state.currentTemp)}</h3>
+                        <h3>Get out your lawn chairs! It's going to be beautiful.</h3>
+                        <h3>0% Chance of Precipitation</h3>
+
+
+
                     </div>
 
 
@@ -120,7 +133,9 @@ class Raincheck extends React.Component {
                     <div className="Traveltime">
                         <h2>Estimated Arrival Time: {moment(this.state.startTripEndTime).format('LT')}</h2>
                         {/* <h2> Return Travel Time: {moment(trip.returnTripEndTime).format('LT')}</h2> */}
-                        <h3>weather data goes here!</h3>
+                        <h3>Temperature: 70</h3>
+                        <h3>Bring an umbrella! 60% Chance of Precipitation</h3>
+
 
                     </div>
 
@@ -138,7 +153,10 @@ class Raincheck extends React.Component {
                     <div className="Returntime">
                         <h2>Start Time: {moment(trip.returnTime).format('LT')}</h2>
                         {/* <h2> Travel Time: {trip.returnTravelTime}</h2> */}
-                        <h3>weather data goes here!</h3>
+                        <h3>Temperature: 63</h3>
+                        <h3>No rain in the forecast</h3>
+                        <h3>0% Chance of Precipitation</h3>
+
                     </div>
 
 
@@ -146,7 +164,9 @@ class Raincheck extends React.Component {
 
                         <h2>Estimated Arrival Time: {moment(this.state.returnTripEndTime).format('LT')}</h2>
                         {/* <h2> Return Travel Time: {trip.returnTravelTime}</h2> */}
-                        <h3>weather data goes here!</h3>
+                        <h3>Temperature: 69</h3>
+                        <h3>Slight chance of rain</h3>
+                        <h3>20% Chance of Precipitation</h3>
 
                     </div>
 
