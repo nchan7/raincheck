@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Login from './Login';
 import './App.css';
+import Rain from './Rain'
 import Signup from './Signup';
 import Home from "./components/TripContainer";
 import Raincheck from "./components/Raincheck";
@@ -183,6 +184,7 @@ class App extends React.Component {
     var trip = this.state.trip
     return (
       <>
+        <Rain />
         {contents}
         <Header />
         <Router>

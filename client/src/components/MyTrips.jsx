@@ -14,7 +14,7 @@ const MyTrips = props => {
           <Link to={`/trips/mytrips/${trip._id}`}> {' '}
             <h4>{trip.tripName}</h4>
           </Link>
-          <button onClick={() => props.deleteTrips(trip._id)}>Delete</button>
+          <button key={i} onClick={() => props.deleteTrips(trip._id)}>Delete</button>
         </div>
       )
     })
