@@ -28,7 +28,7 @@ class Raincheck extends React.Component {
         })
         let config = {
             headers: {
-              Authorization: `Bearer ${this.props.token}`
+                Authorization: `Bearer ${this.props.token}`
             }
         }
         console.log('Just before axios call on the front end', trip._id)

@@ -28,6 +28,7 @@ class App extends React.Component {
     }
     this.checkForLocalToken = this.checkForLocalToken.bind(this) //* May not be necessary since we're not passing it down...but can't hurt
     this.liftToken = this.liftToken.bind(this)
+    this.liftUser = this.liftUser.bind(this)
     this.logout = this.logout.bind(this)
     // this.testRoute = this.testRoute.bind(this)
 
@@ -79,6 +80,7 @@ class App extends React.Component {
 
   //* Object Destructuring! 
   liftToken({ token, user }) {
+    console.log("we are now in the liftToken function!!!!!!!2")
     this.setState({
       token,
       user
@@ -86,6 +88,7 @@ class App extends React.Component {
   }
 
   liftUser(user) {
+    // console.log("we are now in the liftUser function!!!!!!!2")
     this.setState({
       user
     })
@@ -93,7 +96,9 @@ class App extends React.Component {
 
   logout() {
     // Remove token from localStorage
+    this.props.history.push('/')
     localStorage.removeItem('mernToken');
+
     // Remove user and token from state
     this.setState({
       token: '',
@@ -202,11 +207,12 @@ class App extends React.Component {
 
         <Route exact path="/trips/mytrips" render={(props) => <MyTrips user={this.state.user} deleteTrips={this.deleteTrips} token={this.state.token} {...props}/>} />
         <Route exact path="/trips/mytrips/:id" render={(props) => <Raincheck user={this.state.user} token={this.state.token} {...props}/>}/>
-        <Route exact path ='/trips/new' render={() => <NewTrip liftUser={this.liftUser} token={this.state.token}/>} /> 
+        <Route exact path ='/trips/new' render={(props) => <NewTrip liftUser={this.liftUser} token={this.state.token} {...props} />} /> 
         <Route exact path ='/trips/:id' /> {/*  match.params of trip id -AdamG   */}
         <Route exact path ='/trips/:id/edit'  
                 render={(props) => <EditTrip 
-                                      liftToken={this.liftToken} 
+                                      liftUser={this.liftUser}
+                                      // liftToken={this.liftToken} 
                                       user={this.state.user} 
                                       token={this.state.token} 
                                       {...props}/>
