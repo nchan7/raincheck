@@ -21,9 +21,11 @@
 }
 
 .textbox {
+  color: black;
   width: 150px;
   height: 20px; 
   margin: 7px; 
+  background-color: rgba(195, 228, 238, 0.3)
 }
 
 .App {
@@ -111,10 +113,29 @@
   }
 }
 
+
+  
+
+
 .mytrips {
-  border: 1px solid black
+  
+  border-radius: 100%;
+  background-color: rgba(70, 143, 226, 0.3);
+  border: 1px solid black;
+  height: 200px;
+  width: 15%;
 }
 
 .drop {
   background-color: rgb(15, 98, 146);
+}
+
+.Tripname {
+  padding-top: 30px
+}
+
+.Tripflex {
+  display: flex;
+  justify-content: center;
+  padding-top: 1%;
 }
