@@ -3,6 +3,7 @@ import axios from 'axios';
 import Login from './Login';
 import './App.css';
 import Rain from './Rain'
+
 import Signup from './Signup';
 import Home from "./components/TripContainer";
 import Raincheck from "./components/Raincheck";
@@ -132,12 +133,12 @@ class App extends React.Component {
       }
     }
     console.log('token passed')
-    axios.delete(`/trips/${tripId}`,config)
+    axios.delete(`/trips/${tripId}`, config)
       .then(res => {
         this.setState({
           user: res.data.user
         })
-        
+
       })
   }
 
@@ -186,8 +187,10 @@ class App extends React.Component {
       );
     }
     var trip = this.state.trip
+
     return (
       <>
+
         <Rain />
         <Router>
         {contents}
@@ -204,6 +207,7 @@ class App extends React.Component {
             path="/raincheck"
           render={() => <Raincheck user={this.state.user} trips={this.state.trips} checkForLocalToken={this.checkForLocalToken}   />}
           /> */}
+
 
 
         <Route exact path="/trips/mytrips" render={(props) => <MyTrips user={this.state.user} deleteTrips={this.deleteTrips} token={this.state.token} {...props}/>} />
