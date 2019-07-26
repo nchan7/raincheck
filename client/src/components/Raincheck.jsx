@@ -37,9 +37,9 @@ class Raincheck extends React.Component {
         axios.get(url, config).then(results => {
             console.log('After axios call', results.data)
             this.setState({
-                currently: results.data.weather.currently.temperature,
-                hourly: results.data.weather.hourly,
-                daily: results.data.weather.daily
+                currentTemp: results.data.weather.currently.temperature,
+                hourly: results.data.weather.hourly.data[0].temperature,
+                
             })
         }).catch(err => {
             console.log(err)
@@ -53,7 +53,13 @@ class Raincheck extends React.Component {
     render () {
         let trip = this.props.user.trips.find((trip) => {
             return trip._id === this.props.match.params.id
+        
+            // Life cycle 
+            // Set the state to what we want
+            // Or do some functions here before the return
+            // Make object an array and map the array    
         })
+        const startTime = trip.startTime.getTime()/1000;
         return (
             <>
             {/* render the user start time plus and minus the travel time to get the weather data through out the trip
@@ -69,10 +75,10 @@ class Raincheck extends React.Component {
             <div className="Flex">
 
                 <div className="Starttime">
-                    <h2>Start Time: {trip.startTime}</h2>
-                    <h2> Travel Time: {trip.travelTime}</h2>
+                    <h2>Start Time: {startTime}</h2>
+                    <h2>Travel Time: {trip.travelTime}</h2>
                     <h3>weather data goes here!</h3><br/>
-                    <h3>Current Weather: {this.state.currently}</h3>
+                    <h3>Current Weather: {this.state.hourly}</h3>
                 </div>
 
 
@@ -91,8 +97,8 @@ class Raincheck extends React.Component {
             <div className="Flextwo">
 
                 <div className="Returntime">
-                    <h2>Start Time: {trip.startTime}</h2>
-                    <h2> Travel Time: {trip.travelTime}</h2>
+                    <h2>Start Time: {trip.returnTime}</h2>
+                    <h2> Travel Time: {trip.returnTravelTime}</h2>
                     <h3>weather data goes here!</h3>
                 </div>
 
