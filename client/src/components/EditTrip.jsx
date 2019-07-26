@@ -22,7 +22,7 @@ class EditTrip extends React.Component {
         this.handleReturnTimeChange = this.handleReturnTimeChange.bind(this)
         this.handleReturnTravelTimeChange = this.handleReturnTravelTimeChange.bind(this)
         this.handleEditTripSubmit = this.handleEditTripSubmit.bind(this)
-        this.populatePlaceholderValues = this.populatePlaceholderValues.bind(this)
+        // this.populatePlaceholderValues = this.populatePlaceholderValues.bind(this)
     }
 
     // Functions to handle the EditTrip Form submissions
@@ -94,34 +94,34 @@ class EditTrip extends React.Component {
         })
     }
 
-    populatePlaceholderValues() {        
-        let config = {
-            headers: {
-                Authorization: `Bearer ${this.props.token}`
-            }
-        }
-        axios.get(`/trips/${this.props.match.params.id}`, config).then(res => {
-            console.log(res.data)
-            this.setState({
-                tripName: res.data.trip.tripName,
-                zipStart: res.data.trip.zipStart, 
-                startTime: res.data.trip.startTime,
-                travelTime: res.data.trip.travelTime,
-                zipDest: res.data.trip.zipDest,
-                returnTime: res.data.trip.returnTime,
-                returnTravelTime: res.data.trip.returnTravelTime
-            })
+    // populatePlaceholderValues() {        
+    //     let config = {
+    //         headers: {
+    //             Authorization: `Bearer ${this.props.token}`
+    //         }
+    //     }
+    //     axios.get(`/trips/${this.props.match.params.id}`, config).then(res => {
+    //         console.log(res.data)
+    //         this.setState({
+    //             tripName: res.data.trip.tripName,
+    //             zipStart: res.data.trip.zipStart, 
+    //             startTime: res.data.trip.startTime,
+    //             travelTime: res.data.trip.travelTime,
+    //             zipDest: res.data.trip.zipDest,
+    //             returnTime: res.data.trip.returnTime,
+    //             returnTravelTime: res.data.trip.returnTravelTime
+    //         })
 
-        }).catch(err => {
-            this.setState({
-                message: "Data not aquired from db.",
-                err: err
-            })
-        })
-    }
+    //     }).catch(err => {
+    //         this.setState({
+    //             message: "Data not aquired from db.",
+    //             err: err
+    //         })
+    //     })
+    // }
     
     componentDidMount() {
-        this.populatePlaceholderValues()
+        // this.populatePlaceholderValues()
     }
 
     render() {
