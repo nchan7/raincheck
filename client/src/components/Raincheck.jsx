@@ -19,7 +19,9 @@ class Raincheck extends React.Component {
             currentTime: null,
             hourlyTime: null,
             hourlyTemp: null,
-            hourlyPrecip: null
+            hourlyPrecip: null,
+            startTripEndTime: null,
+            returnTripEndTime: null
         }
         this.getWeatherData = this.getWeatherData.bind(this)
     }
@@ -29,6 +31,16 @@ class Raincheck extends React.Component {
         let trip = this.props.user.trips.find((trip) => {
             return trip._id === this.props.match.params.id
         })
+
+        let startTripEndTime = moment(trip.startTime).add(trip.travelTime, 'minutes')
+        let returnTripEndTime = moment(trip.returnTime).add(trip.returnTravelTime, 'minutes');
+        // console.log(returnTripEndTime)
+        this.setState({
+            startTripEndTime,
+            returnTripEndTime
+        })
+
+
         let config = {
             headers: {
                 Authorization: `Bearer ${this.props.token}`
@@ -74,12 +86,13 @@ class Raincheck extends React.Component {
         // let travelTimeHours = Math.floor(trip.travelTime/60)
         // let travelTimeMinutes = trip.travelTime % 60;
         
-        let currentTime = moment(this.state.currentTime).format('LT');
-        let timeDifference = moment(trip.startTime).format('LT') - moment(this.state.currentTime).format('LT');
+        // let currentTime = moment(this.state.currentTime).format('LT');
+        // let timeDifference = moment(trip.startTime).format('LT') - moment(this.state.currentTime).format('LT');
+        
 
-
-        console.log(currentTime)
- //       const startTime = trip.startTime.getTime()/1000;
+        // console.log(currentTime)
+        
+ 
         return (
             <>
                 {/* render the user start time plus and minus the travel time to get the weather data through out the trip
@@ -90,13 +103,14 @@ class Raincheck extends React.Component {
             * What To Render on this Page = "StartTime-TravelTime" State & "ReturnTime-ReturnTravelTime" State & apiData- tripName */}
 
 
-                <h1 className="App"> Morning weather route: {trip.tripName}</h1>
+                {/* <h1 className="App"> Morning weather route: {trip.tripName}</h1> */}
+                <h1 className="App"> Trip: {trip.tripName}</h1>
 
                 <div className="Flex">
 
                     <div className="Starttime">
                         <h2>Start Time: {moment(trip.startTime).format('LT')}</h2>
-                        <h2>Travel Time: {moment(trip.startTime).add(trip.travelTime, 'minutes')}</h2>
+                        {/* <h2>Travel Time: {moment(this.state.startTripEndTime).format('LT')}</h2> */}
                         <h3>weather data goes here!</h3><br />
                         <h3>Current Weather: {this.state.currentTemp}</h3>
                     </div>
@@ -104,8 +118,8 @@ class Raincheck extends React.Component {
 
 
                     <div className="Traveltime">
-                        <h2>Return Time: {moment(trip.returnTime).format('LT')}</h2>
-                        <h2> Return Travel Time: {trip.returnTravelTime}</h2>
+                        <h2>Estimated Arrival Time: {moment(this.state.startTripEndTime).format('LT')}</h2>
+                        {/* <h2> Return Travel Time: {moment(trip.returnTripEndTime).format('LT')}</h2> */}
                         <h3>weather data goes here!</h3>
 
                     </div>
@@ -113,7 +127,8 @@ class Raincheck extends React.Component {
                 </div>
 
 
-                <h1 className="App"> Evening weather route: {trip.tripName}</h1>
+                {/* <h1 className="App"> Evening weather route: {trip.tripName}</h1> */}
+                <h1 className="App"> Return Trip</h1>
 
                 <div className="Flextwo">
 
@@ -122,15 +137,15 @@ class Raincheck extends React.Component {
 
                     <div className="Returntime">
                         <h2>Start Time: {moment(trip.returnTime).format('LT')}</h2>
-                        <h2> Travel Time: {trip.returnTravelTime}</h2>
+                        {/* <h2> Travel Time: {trip.returnTravelTime}</h2> */}
                         <h3>weather data goes here!</h3>
                     </div>
 
 
                     <div className="ReturnTravel">
 
-                        <h2>Return Time: {moment(trip.returnTime).format('LT')}</h2>
-                        <h2> Return Travel Time: {trip.returnTravelTime}</h2>
+                        <h2>Estimated Arrival Time: {moment(this.state.returnTripEndTime).format('LT')}</h2>
+                        {/* <h2> Return Travel Time: {trip.returnTravelTime}</h2> */}
                         <h3>weather data goes here!</h3>
 
                     </div>
