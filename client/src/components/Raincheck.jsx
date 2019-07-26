@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 // Sourced code from https://medium.com/@maison.moa/create-a-simple-weather-app-using-node-js-express-and-react-54105094647a
 
@@ -14,15 +15,17 @@ class Raincheck extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currently: null,
-            hourly: null,
-            daily: null
+            currentTemp: null,
+            currentTime: null,
+            hourlyTime: null,
+            hourlyTemp: null,
+            hourlyPrecip: null
         }
         this.getWeatherData = this.getWeatherData.bind(this)
     }
 
     getWeatherData() {
-        console.log('Yay! Component did mount')
+        // console.log('Yay! Component did mount')
         let trip = this.props.user.trips.find((trip) => {
             return trip._id === this.props.match.params.id
         })
@@ -31,14 +34,22 @@ class Raincheck extends React.Component {
                 Authorization: `Bearer ${this.props.token}`
             }
         }
-        console.log('Just before axios call on the front end', trip._id)
+        // console.log('Just before axios call on the front end', trip._id)
         let url = `/trips/${trip._id}`
-        console.log(url)
+        // console.log(url)
         axios.get(url, config).then(results => {
-            console.log('After axios call', results.data)
+            // console.log('After axios call', results.data)
+            var hourlyTime = results.data.weather.hourly.data.map(data => data.time);
+            var hourlyTemp = results.data.weather.hourly.data.map(data => data.temperature);
+            var hourlyPrecip = results.data.weather.hourly.data.map(data => data.precipProbability);
+            
+            
             this.setState({
                 currentTemp: results.data.weather.currently.temperature,
-                hourly: results.data.weather.hourly.data[0].temperature,
+                currentTime: results.data.weather.currently.time,
+                hourlyTime: hourlyTime,
+                hourlyTemp: hourlyTemp,
+                hourlyPrecip: hourlyPrecip
                 
             })
         }).catch(err => {
@@ -51,6 +62,7 @@ class Raincheck extends React.Component {
     }
 
     render() {
+
         let trip = this.props.user.trips.find((trip) => {
             return trip._id === this.props.match.params.id
         
@@ -59,6 +71,14 @@ class Raincheck extends React.Component {
             // Or do some functions here before the return
             // Make object an array and map the array    
         })
+        // let travelTimeHours = Math.floor(trip.travelTime/60)
+        // let travelTimeMinutes = trip.travelTime % 60;
+        
+        let currentTime = moment(this.state.currentTime).format('LT');
+        let timeDifference = moment(trip.startTime).format('LT') - moment(this.state.currentTime).format('LT');
+
+
+        console.log(currentTime)
  //       const startTime = trip.startTime.getTime()/1000;
         return (
             <>
@@ -75,16 +95,16 @@ class Raincheck extends React.Component {
                 <div className="Flex">
 
                     <div className="Starttime">
-                        <h2>Start Time: {trip.startTime}</h2>
-                        <h2> Travel Time: {trip.travelTime}</h2>
+                        <h2>Start Time: {moment(trip.startTime).format('LT')}</h2>
+                        <h2>Travel Time: {moment(trip.startTime).add(trip.travelTime, 'minutes')}</h2>
                         <h3>weather data goes here!</h3><br />
-                        <h3>Current Weather: {this.state.currently}</h3>
+                        <h3>Current Weather: {this.state.currentTemp}</h3>
                     </div>
 
 
 
                     <div className="Traveltime">
-                        <h2>Return Time: {trip.returnTime}</h2>
+                        <h2>Return Time: {moment(trip.returnTime).format('LT')}</h2>
                         <h2> Return Travel Time: {trip.returnTravelTime}</h2>
                         <h3>weather data goes here!</h3>
 
@@ -101,7 +121,7 @@ class Raincheck extends React.Component {
 
 
                     <div className="Returntime">
-                        <h2>Start Time: {trip.returnTime}</h2>
+                        <h2>Start Time: {moment(trip.returnTime).format('LT')}</h2>
                         <h2> Travel Time: {trip.returnTravelTime}</h2>
                         <h3>weather data goes here!</h3>
                     </div>
@@ -109,7 +129,7 @@ class Raincheck extends React.Component {
 
                     <div className="ReturnTravel">
 
-                        <h2>Return Time: {trip.returnTime}</h2>
+                        <h2>Return Time: {moment(trip.returnTime).format('LT')}</h2>
                         <h2> Return Travel Time: {trip.returnTravelTime}</h2>
                         <h3>weather data goes here!</h3>
 
