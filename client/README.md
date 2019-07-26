@@ -39,13 +39,75 @@ Images of the API sites
 
 ### Dark Sky API:
 
-<img src="./public/img/DarkSky.png" height = 200px width = 400px>
+<img src="./src/img/DarkSky.png" height = 200px width = 400px>
 
 
 ### Mapbox API:
 
-<img src="./public/img/Mapbox.png" height = 200px width = 400px>
+<img src="./src/img/Mapbox.png" height = 200px width = 400px>
 
+# Planning
+The project team started off by deciding what the user would like to see from this app and then planning how we would layout the frontend and backend portions. We spent approximately 16-20 hours whiteboarding, learning O-Auth, and deciding what approach would be best for this MERN Stack application.
+
+
+## User Story
+The user wants to know if they are going to encounter rain or adverse weather conditions along their commute.
+
+## Whiteboarding
+We started this project off by whiteboarding what the app would look like given the user's story. Images of our whiteboarding process are below:
+
+
+<img src="./src/img/Whiteboard1.jpg" height = 200px width = 400px>
+
+<img src="./src/img/Whiteboard2.jpg" height = 200px width = 400px>
+
+<img src="./src/img/Whiteboard3.jpg" height = 200px width = 400px>
+
+<img src="./src/img/Whiteboard4.jpg" height = 200px width = 400px>
+
+Our goal was to develop a mobile-friendly app for a user to view all of his or her trips and the weather at the origin and destination of the trip. 
+
+## Process
+1. We developed the database with a user model and trip model that had a one user to many trips relationship
+2. Completed the backend routing for the full-stack app and tested the routes and their interaction with the MongoDB in Postman
+3. Tested different React components in Code Sandbox
+4. Wrote the different components in React and then linked them in the frontend with React-Router-DOM
+5. Connected the frontend with the backend using the Axios node-module
+6. Pulled the Dark Sky API data on the backend and served it to the front
+7. Styled 
+
+We were troubleshooting different issues throughout this process. See the next section for some of the main challenges. 
+
+Below is an image of what the app currently looks like:
+
+<img src="./src/img/Raincheck.png" height = 200px width = 400px>
+
+
+
+# Challenges
+Throughout the development process we ran into a variety of different challenges:
+* Having recently learned React.js, structuring and formatting our React app was our greatest challenge as we realized we were storing state in almost every component we created. 
+* As we moved throught the project another challenge we faced was deciding as a team on the final product and what the user will end up seeing on the page for each trip. 
+* Linking the backend to the frontend was also a great challenge as we tried to determine how to access the different routes in our app. 
+* A challenge we faced as a group was trying to split up tasks in a way where everyone can participate
+* We ran into a permissions restriction when we tried to call the Dark Sky API from the frontend so we had to call the API from the backend and serve the appropriate data to the front. 
+    * A challenge with the weather data comes with trying to query the API for a specific time which will provide the forcasted change of precipitation and temperature at our desired time. 
+
+# Wish List
+* Pull the appropriate weather after receiving the data from Dark Sky API 
+* Continued styling of the application
+
+# Credit To
+Credit to the following people and sources for their insightful help and inspiration:
+* Steve Peters
+* Mike Shull 
+* Carlo Bruno
+* Dark Sky API
+* Peter Liu: https://blog.mapbox.com/map-the-weather-along-your-route-ae5d6d89e1f4
+* Mark Ridgway: https://github.com/MarkRidgway/react-weather
+
+
+----
 
 ## The Following was provided by the node module create-react-app. 
 
