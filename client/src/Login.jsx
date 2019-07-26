@@ -42,6 +42,8 @@ class Login extends React.Component {
                 localStorage.setItem('mernToken', res.data.token)
                 this.props.liftToken(res.data)
             }
+        }).then(()=> {
+            this.props.history.push('/trips/mytrips')
         }).catch(err => {
             this.setState({
                 message: "Maximum login attempts exceeded. Please try again later."
@@ -71,8 +73,5 @@ class Login extends React.Component {
     }
 
 }
-
-
-
 
 export default Login;

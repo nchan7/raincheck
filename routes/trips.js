@@ -24,10 +24,10 @@ router.get('/:id', (req, res) => {
     Trip.findById(req.params.id, (err,trip) => {
         if (err) res.json(err)
         // res.json(trip)
-        console.log(trip)
-        console.log(req.params.id)
+        // console.log(trip)
+        // console.log(req.params.id)
         let weatherUrl = `https://api.darksky.net/forecast/${process.env.DARK_SKY_API}/${trip.latStart},${trip.longStart}`
-        console.log('Almost at the axios call')
+        // console.log('Almost at the axios call')
         axios.get(weatherUrl).then(results => {
             console.log('Im in the axios call', results)
             res.json({weather: results.data, trip})

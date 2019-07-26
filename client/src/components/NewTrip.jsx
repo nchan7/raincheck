@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 // import withRouter from 'react-router-dom';
 
 class NewTrip extends React.Component {

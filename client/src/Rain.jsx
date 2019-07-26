@@ -7,7 +7,7 @@ export class Rain extends Component {
             <>
                 <h1>Raincheck
                 </h1>
-                <ReactRain numDrops="1" />
+                <ReactRain numDrops="100" />
 
             </>
         );
