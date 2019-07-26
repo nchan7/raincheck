@@ -3,6 +3,7 @@ import axios from 'axios';
 import Login from './Login';
 import './App.css';
 import Rain from './Rain'
+
 import Signup from './Signup';
 import Home from "./components/TripContainer";
 import Raincheck from "./components/Raincheck";
@@ -128,12 +129,12 @@ class App extends React.Component {
       }
     }
     console.log('token passed')
-    axios.delete(`/trips/${tripId}`,config)
+    axios.delete(`/trips/${tripId}`, config)
       .then(res => {
         this.setState({
           user: res.data.user
         })
-        
+
       })
   }
 
@@ -182,19 +183,21 @@ class App extends React.Component {
       );
     }
     var trip = this.state.trip
+
     return (
       <>
+
         <Rain />
         {contents}
         <Header />
         <Router>
-        <nav>
-          <Link to='/'>LocalHost3000000000</Link>{'  |  '} 
-          <Link to='/trips/new'>New Trip</Link>{'  |  '} 
-          {/* <Link to='/trips/:id'>Show Trip</Link>{'  |  '}  */}
-          {/* <Link to='/trips/:id/edit'>Edit Trip</Link>{'  |  '}  */}
-          <Link to='/trips/mytrips'>My Trips</Link>
-        </nav>
+          <nav>
+            <Link to='/'>LocalHost3000000000</Link>{'  |  '}
+            <Link to='/trips/new'>New Trip</Link>{'  |  '}
+            {/* <Link to='/trips/:id'>Show Trip</Link>{'  |  '}  */}
+            {/* <Link to='/trips/:id/edit'>Edit Trip</Link>{'  |  '}  */}
+            <Link to='/trips/mytrips'>My Trips</Link>
+          </nav>
           {/* <Route
             exact
             path="/raincheck"
@@ -202,17 +205,17 @@ class App extends React.Component {
           /> */}
 
 
-        <Route exact path="/trips/mytrips" render={(props) => <MyTrips user={this.state.user} deleteTrips={this.deleteTrips} token={this.state.token} {...props}/>} />
-        <Route exact path="/trips/mytrips/:id" render={(props) => <Raincheck user={this.state.user} token={this.state.token} {...props}/>}/>
-        <Route exact path ='/trips/new' render={() => <NewTrip liftUser={this.liftUser} token={this.state.token}/>} /> 
-        <Route exact path ='/trips/:id' /> {/*  match.params of trip id -AdamG   */}
-        <Route exact path ='/trips/:id/edit'  
-                render={(props) => <EditTrip 
-                                      liftToken={this.liftToken} 
-                                      user={this.state.user} 
-                                      token={this.state.token} 
-                                      {...props}/>
-                        }   /> 
+          <Route exact path="/trips/mytrips" render={(props) => <MyTrips user={this.state.user} deleteTrips={this.deleteTrips} token={this.state.token} {...props} />} />
+          <Route exact path="/trips/mytrips/:id" render={(props) => <Raincheck user={this.state.user} token={this.state.token} {...props} />} />
+          <Route exact path='/trips/new' render={() => <NewTrip liftUser={this.liftUser} token={this.state.token} />} />
+          <Route exact path='/trips/:id' /> {/*  match.params of trip id -AdamG   */}
+          <Route exact path='/trips/:id/edit'
+            render={(props) => <EditTrip
+              liftToken={this.liftToken}
+              user={this.state.user}
+              token={this.state.token}
+              {...props} />
+            } />
 
           {/* <Route exact path='/issues' render={(props) => <Issues issues={issueCopy} />}/> 
         <Route exact path='/issues/:id' render={(props) => <IssueShow issues={issueCopy} {...props} />} />  */}
