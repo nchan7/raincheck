@@ -1,7 +1,7 @@
 # Raincheck
 ## Fuad Abdella, Nathan Chan, Adam Grunke | July 26, 2019
 ### General Assembly - Software Engineering Immersive Project 3: HTML, CSS/Bootstrap, Javascript, Node.js, React.js, MongoDB, Mongoose
-#### Check out a demo of the site here: 
+#### Check out a demo of the site here: https://fathomless-temple-87598.herokuapp.com
 
 # Introduction
 Have you ever needed to know what the weather is like at the origin and destination of your route? You have come to the right place. Use Raincheck to save your trips and check the weather at the start and end of each trip. Based on that you'll be able to determine what mode of travel is best or what you might need to wear to take on the day. 
