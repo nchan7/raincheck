@@ -39,12 +39,12 @@ Images of the API sites
 
 ### Dark Sky API:
 
-<img src="./src/img/DarkSky.png" height = 200px width = 400px>
+<img src="./client/src/img/DarkSky.png" height = 200px width = 400px>
 
 
 ### Mapbox API:
 
-<img src="./src/img/Mapbox.png" height = 200px width = 400px>
+<img src="./client/src/img/Mapbox.png" height = 200px width = 400px>
 
 # Planning
 The project team started off by deciding what the user would like to see from this app and then planning how we would layout the frontend and backend portions. We spent approximately 16-20 hours whiteboarding, learning O-Auth, and deciding what approach would be best for this MERN Stack application.
@@ -57,13 +57,13 @@ The user wants to know if they are going to encounter rain or adverse weather co
 We started this project off by whiteboarding what the app would look like given the user's story. Images of our whiteboarding process are below:
 
 
-<img src="./src/img/Whiteboard1.jpg" height = 200px width = 400px>
+<img src="./client/src/img/Whiteboard1.jpg" height = 200px width = 400px>
 
-<img src="./src/img/Whiteboard2.jpg" height = 200px width = 400px>
+<img src="./client/src/img/Whiteboard2.jpg" height = 200px width = 400px>
 
-<img src="./src/img/Whiteboard3.jpg" height = 200px width = 400px>
+<img src="./client/src/img/Whiteboard3.jpg" height = 200px width = 400px>
 
-<img src="./src/img/Whiteboard4.jpg" height = 200px width = 400px>
+<img src="./client/src/img/Whiteboard4.jpg" height = 200px width = 400px>
 
 Our goal was to develop a mobile-friendly app for a user to view all of his or her trips and the weather at the origin and destination of the trip. 
 
@@ -80,7 +80,7 @@ We were troubleshooting different issues throughout this process. See the next s
 
 Below is an image of what the app currently looks like:
 
-<img src="./src/img/Raincheck.png" height = 200px width = 400px>
+<img src="./client/src/img/Raincheck.png" height = 200px width = 400px>
 
 
 
