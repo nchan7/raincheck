@@ -7,7 +7,7 @@
 Have you ever needed to know what the weather is like at the origin and destination of your route? You have come to the right place. Use Raincheck to save your trips and check the weather at the start and end of each trip. Based on that you'll be able to determine what mode of travel is best or what you might need to wear to take on the day. 
 
 ## Project Requirements
-This is the third of four projects that will be incorporated as part of the General Assembly Software Engineering Immersive. The goal is to combined all that we have learned in Units 1, 2, and 3 (HTML, CSS, Javasript, Node.js, Express.js, React.js, MongoDB, Mongoose, and Authentication) into a full-stack web application that we can publish for the public. This project requires us to work in a team of three or four developers which also allows us to employ... 
+This is the third of four projects that will be incorporated as part of the General Assembly Software Engineering Immersive. The goal is to combined all that we have learned in Units 1, 2, and 3 (HTML, CSS, Javasript, Node.js, Express.js, React.js, MongoDB, Mongoose, and Authentication) into a full-stack web application that we can publish for the public. This project requires us to work in a team of three or four developers which also allows us to model a collaborative work environment. 
 
 
 
